@@ -1,0 +1,311 @@
+.board {
+  display: grid;
+  grid-template-columns: repeat(11, 1fr);
+  grid-template-rows: repeat(11, 1fr);
+  margin: auto;
+  padding: 2px;
+  border: 8px solid black;
+  width: 100vw;
+  height: 100vh;
+  max-width: 1000px;
+  max-height: 1000px;
+  min-width: 1000px;
+  min-height: 1000px;
+}
+
+.background-theme {
+  background-image: url('https://wallpapers.com/images/hd/monopoly-man-oil-painting-f3izjbgq887mb1yu.jpg');
+  background-size: cover;
+  opacity: 25%;
+  grid-row: 2 / span 9;
+  grid-column: 2 / span 9;
+  z-index: -1;
+}
+
+.cell {
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  text-align: center;
+  box-sizing: border-box;
+  overflow: hidden;
+  word-wrap: break-word;
+  flex-direction: column;
+  background-color: rgb(245, 245, 245);
+  font-family: 'BioRhyme', serif;
+}
+
+.center-logo {
+  grid-row: 4 / span 5;
+  grid-column: 4 / span 5;
+  background-image: url('../src/images/c5b1916ae334ff413b3a724cffb87516-removebg-preview.png');
+  transform: rotate(313deg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.chance-pile {
+  grid-row: 8 / span 2;
+  grid-column: 8 / span 2;
+  padding: 10px;
+}
+
+.chance-pile-rectangle {
+  border: 4px dotted black;
+  width: 250px;
+  height: 125px;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.chance-text {
+  display: block;
+  text-align: center;
+  font-size: 3rem;
+  font-family: 'BioRhyme', serif;
+  font-weight: 800;
+}
+
+.community-chest-rectangle {
+  border: 4px dotted black;
+  width: 250px;
+  height: 125px;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(135deg);
+}
+
+.community-chest-text {
+  display: block;
+  text-align: center;
+  font-size: 2.3rem;
+  font-family: 'BioRhyme', serif;
+  font-weight: 800;
+}
+
+.community-chest-pile {
+  grid-row: 3 / span 2;
+  grid-column: 3 / span 2;
+}
+
+.price {
+  align-self: center;
+  font-style: normal;
+  font-size: 10px;
+  font-weight: 400;
+}
+
+.prop-name {
+  padding-top: 20px;
+  font-weight: 700;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.visiting-jail {
+  background-image: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/4081702c-a6b1-4b37-96fa-5cd63833eb34/d7kvyu8-2003b84c-2d5d-4ab5-b9bd-60527cacf70e.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzQwODE3MDJjLWE2YjEtNGIzNy05NmZhLTVjZDYzODMzZWIzNFwvZDdrdnl1OC0yMDAzYjg0Yy0yZDVkLTRhYjUtYjliZC02MDUyN2NhY2Y3MGUuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.__BliVmyA2q_Y3oKmiuHK4o-9wQjY2mhxszDRvvX-k8');
+  background-size: cover;
+  transform: rotate(90deg) !important;
+}
+
+.go-to-jail {
+  background-image: url('https://www.ultraboardgames.com/monopoly/gfx/ms13.jpg');
+  background-size: cover;
+}
+
+.income-tax {
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.income-tax-details {
+  align-self: bottom;
+  font-style: normal;
+  font-size: 10px;
+}
+
+.free-parking {
+  
+  background-image: url('../src/images/free-parking_81x81.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  transform: rotate(180deg) !important;
+}
+
+.go {
+  background-image: url('https://static.wikia.nocookie.net/monopoly/images/9/91/Go-.gif');
+  background-size: cover;
+}
+
+.rail-road {
+  background-image: url('../src/images/rail_road_2_50x25.png');
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-position: top;
+}
+
+.electric-company {
+  background-image: url('../src/images/electric_company_50x25.jpg');
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-position: top;
+}
+
+.water-works {
+  background-image: url('../src/images/water_works_50x25.jpg');
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-position: top;
+}
+
+.luxury-tax {
+  background-image: url('../src/images/luxury_tax_81x81.jpg');
+  background-size: cover;
+}
+
+.rr-and-utilities-name {
+  padding-top: 20px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.cell.yellow {
+  background: linear-gradient(to bottom, yellow 25%, rgb(245, 245, 245) 25%);
+  background-clip: content-box;
+}
+
+.cell.red {
+  background: linear-gradient(to bottom, red 25%, rgb(245, 245, 245) 25%);
+  background-clip: content-box;
+}
+
+.cell.light-blue {
+  background: linear-gradient(to bottom, lightblue 25%, rgb(245, 245, 245) 25%);
+  background-clip: content-box;
+}
+
+.cell.green {
+  background: linear-gradient(to bottom, green 25%, rgb(245, 245, 245) 25%);
+  background-clip: content-box;
+}
+
+.cell.purple {
+  background: linear-gradient(to bottom, purple 25%, rgb(245, 245, 245) 25%);
+  background-clip: content-box;
+}
+
+.cell.brown {
+  background: linear-gradient(to bottom, #964B00 25%, rgb(245, 245, 245) 25%);
+  background-clip: content-box;
+}
+
+.cell.orange {
+  background: linear-gradient(to bottom, orange 25%, rgb(245, 245, 245) 25%);
+  background-clip: content-box;
+}
+
+.cell.dark-blue {
+  background: linear-gradient(to bottom, darkblue 25%, rgb(245, 245, 245) 25%);
+  background-clip: content-box;
+}
+
+.cell-top {
+  grid-row-start: 1;
+  grid-row-end: 2;
+  transform: rotate(180deg);
+}
+
+.cell-bottom {
+  grid-row-start: 11;
+  grid-row-end: 12;
+}
+
+.cell-right {
+  grid-column-start: 11;
+  grid-column-end: 12;
+  transform: rotate(-90deg);
+}
+
+.cell-left {
+  transform: rotate(-90deg);
+}
+
+.st-charles {
+  grid-row: 10;
+  grid-column: 1;
+  transform: rotate(90deg);
+}
+
+.electric {
+  grid-row: 9;
+  grid-column: 1;
+  transform: rotate(90deg);
+}
+
+.states-ave {
+  grid-row: 8;
+  grid-column: 1;
+  transform: rotate(90deg);
+}
+
+.virginia-ave {
+  grid-row: 7;
+  grid-column: 1;
+  transform: rotate(90deg);
+}
+
+.penn-rr {
+  grid-row: 6;
+  grid-column: 1;
+  transform: rotate(90deg);
+}
+
+.st-james {
+  grid-row: 5;
+  grid-column: 1;
+  transform: rotate(90deg);
+}
+
+.community-chest-left {
+  grid-row: 4;
+  grid-column: 1;
+  transform: rotate(90deg);
+}
+
+.tennessee-ave {
+  grid-row: 3;
+  grid-column: 1;
+  transform: rotate(90deg);
+}
+
+.new-york-ave {
+  grid-row: 2;
+  grid-column: 1;
+  transform: rotate(90deg);
+}
+
+.free-parking {
+  grid-row: 1;
+  grid-column: 1;
+  transform: rotate(90deg);
+}
+
+.community-chest {
+  background-image: url('https://i.pinimg.com/originals/aa/98/84/aa98846a483c4de09ea31b9c1e3fd8a1.gif');
+  background-size: cover;
+}
+
+.chance {
+  background-image: url('../src/images/chance_monopoly_81x81.png');
+  background-size: cover;
+}
+/* Use these classes to line the perimeter with the cells */
+.cell.top, .cell.bottom, .cell.left, .cell.right {
+  background-color: lightgray;
+}
