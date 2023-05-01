@@ -127,7 +127,6 @@ function App() {
     <span class="prop-name">Boardwalk</span>
     <span class="price">price $400</span></div>
 	</div>
-
   );
 }
 
