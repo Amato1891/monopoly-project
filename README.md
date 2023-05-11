@@ -10,4 +10,4 @@ I plan to add Javascript to this project to make the game playable in the near f
 
 # Live Demo
 
-<a href="https://jimamato.com/monopoly-project/"> Monopoly Project<a/>
+<a href="http://jimamato.com/monopoly-project/"> Monopoly Project<a/>
