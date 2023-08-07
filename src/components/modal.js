@@ -38,9 +38,15 @@ export function DisplayModal(props) {
 
   export function PlayerDetailsModal(props) {
 
-    const [numberOfPlayers, setNumberOfPlayers] = useState(1);
+    const [numberOfPlayers, setNumberOfPlayers] = useState(0);
     const [gamePiece, setGamePiece] = useState('');
     const [name, setName] = useState('');
+    const [shouldRenderButton, setShouldRenderButton] = useState(false);
+    const [showCharSelectModal, setShowCharSelectModal] = useState(true);
+  
+    const addAdditionalPlayers = () => {
+      setShowCharSelectModal (true);
+    }
   
     // submit button on player detail modal
     const handleFormSubmit = (e) => {
@@ -53,6 +59,9 @@ export function DisplayModal(props) {
           document.getElementsByClassName(gamePiece)[0].classList.add('hidden');
           setName('');
           setGamePiece('');
+          console.log(`were at ${numberOfPlayers} players. `)
+          numberOfPlayers+1 >= 2 ? setShouldRenderButton (true) : setShouldRenderButton (false);
+          numberOfPlayers+1 >= 2 ? setShowCharSelectModal (false) : setShowCharSelectModal (true)
           console.log(numberOfPlayers)
         }
         setNumberOfPlayers(numberOfPlayers+1);
@@ -64,7 +73,6 @@ export function DisplayModal(props) {
         if (numberOfPlayers < 2) return;
        props.onHide();
       };
-
     return (
       <Modal
         {...props}
@@ -75,11 +83,18 @@ export function DisplayModal(props) {
         keyboard={false}
       >
         <Modal.Header>
+        {showCharSelectModal ? (
           <Modal.Title id="contained-modal-title-vcenter">
-            {`Enter Player ${numberOfPlayers} Details`}
+            {`Enter Player ${numberOfPlayers+1} Details`}
           </Modal.Title>
+    ) : (
+    <Modal.Title id="contained-modal-title-vcenter">
+            {`You Have Entered ${numberOfPlayers} Players And Can Now Start The Game.`}<br/><br/>
+            {`Would You Like To Add Additional Players?`}
+          </Modal.Title>)}
         </Modal.Header>
         <Modal.Body>
+        {showCharSelectModal ? (
         <Form>
           <Form.Group className="mb-3" controlId="name">
             <Form.Label>Name</Form.Label>
@@ -104,14 +119,28 @@ export function DisplayModal(props) {
               <option className = "car" value="car">Car</option>
             </Form.Select>
           </Form.Group>
+          <Modal.Footer>
           <Button variant="primary" type="submit" onClick={handleFormSubmit}>
-            Submit
+            Add Player
           </Button>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          {shouldRenderButton && (
           <Button variant="danger" type="submit" onClick={handleFormDone}>
-            Fished Adding Players
+            Finished Adding Players
           </Button>
+          )}
+          </Modal.Footer>
         </Form>
+        ) : (<>
+          <Button variant="primary" type="submit" onClick={addAdditionalPlayers}>
+            Add Additional Players
+          </Button>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <Button variant="danger" type="submit" onClick={handleFormDone}>
+            Finished Adding Players
+          </Button>
+          </>
+        )}
         </Modal.Body>
       </Modal>
     );
