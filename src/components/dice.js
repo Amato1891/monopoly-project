@@ -79,6 +79,8 @@ export function Dice({ onFullValueChange }) {
     }
   };
 
+  console.log(fullValue)
+
   const handleRollDice = () => {
     setRolled(true);
     setShowDice(true);

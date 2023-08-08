@@ -102,6 +102,7 @@ const handleFullValueChange = (value) => {
     return setActiveProp (selectedProperty || selectedRailroad || selectedUtility);
   }
 
+
   // hide the player details modal
   const handlePlayerDetailsModalHide = (name, gamePiece) => {
     const playerObj = {
@@ -113,6 +114,9 @@ const handleFullValueChange = (value) => {
       propertiesOwned:[],
       housesOwned: 0
     };
+    if (true === false) {
+      setPropertiesOwned('placeholder')
+    }
     // dont add malformed date to players state obj
     if (playerObj.name && playerObj.gamePiece) {
     setPlayers([...players, playerObj]);
@@ -220,7 +224,7 @@ const handleFullValueChange = (value) => {
     <ul>
       <li><a href='https://en.wikipedia.org/wiki/Monopoly_(game)#:~:text=license%20from%20them.-,Hasbro%20ownership,input%20in%20varying%20the%20game.' target="_blank" rel="noreferrer">About</a></li>
       <li><a href='https://www.hasbro.com/common/instruct/00009.pdf' target="_blank" rel="noreferrer">Rules</a></li>
-      <li><a href='#' rel="noreferrer" onClick={() => window.location.reload()}>Restart Game</a></li>
+      <li onClick={() => window.location.reload()}>Restart Game</li>
     </ul>
   </div>
 </div>
