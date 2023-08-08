@@ -18,8 +18,8 @@ jobs:
 
       - name: Set up Node.js
         uses: actions/setup-node@v2
-        runs:
-          using: 'node16'
+        with:
+          node-version: '16'  # Specify Node.js version 16
 
       - name: Install dependencies
         run: npm install
@@ -32,3 +32,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
+
+runs:
+  using: 'node16'
+  main: 'main.js'
