@@ -13,16 +13,28 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Debug
+        run: echo "Debug message"
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'  # Specify Node.js version 16
 
+      - name: Debug
+        run: echo "Debug message"
+
       - name: Install dependencies
         run: npm install
 
+      - name: Debug
+        run: echo "Debug message"
+
       - name: Build React app
         run: npm run build
+      
+      - name: Debug
+        run: echo "Debug message"
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
