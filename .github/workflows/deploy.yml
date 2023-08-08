@@ -16,9 +16,10 @@ jobs:
       - name: Clear npm cache
         run: npm cache clean --force
 
-      - runs:
-        using: 'node16'
-        main: 'main.js'
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
 
       - name: Install dependencies
         run: npm install
