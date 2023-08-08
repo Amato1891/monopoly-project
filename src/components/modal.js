@@ -2,7 +2,10 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import React, { useState, useEffect  } from 'react';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLightbulb as farLightbulb } from '@fortawesome/free-regular-svg-icons';
+import { faFaucet } from '@fortawesome/free-solid-svg-icons';
+const rmWhitespace = /\s/g;
 
 export function DisplayModal(props) {
     const handleButtonClick = (buttonNumber) => {
@@ -43,7 +46,7 @@ export function DisplayModal(props) {
     const [name, setName] = useState('');
     const [shouldRenderButton, setShouldRenderButton] = useState(false);
     const [showCharSelectModal, setShowCharSelectModal] = useState(true);
-  
+    
     const addAdditionalPlayers = () => {
       setShowCharSelectModal (true);
     }
@@ -144,4 +147,70 @@ export function DisplayModal(props) {
         </Modal.Body>
       </Modal>
     );
+  }
+
+  export function PropertyDetailsModal(props) {
+
+    const handleButtonClick = () => {
+      props.onHide();
+    };
+
+    return (
+      
+      <Modal
+        {...props}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        backdrop="static"
+        keyboard={false}
+        onClick={handleButtonClick}
+      >
+        {props.activeProperty.type === 'railroad' ? (<>
+        <Modal.Header className='railroad-details-modal-header'>
+          <Modal.Title id="contained-modal-title-vcenter">
+            <div className="property-details-card-heading" >{props.activeProperty.name}</div>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className='property-details-card-rent'>Rent ${typeof props.activeProperty.rent === 'undefined' ? 0 : props.activeProperty.rent[0]}</div>
+        <br/>
+        <div className= 'railroad-details-card-rent-with-house-container'>If 2 R.R.'s are owned <span className='property-details-card-rent-with-house'>${props.activeProperty.rent[1]}</span></div>
+        <div className='railroad-details-card-rent-with-house-container'>If 3 R.R.'s are owned <span className='property-details-card-rent-with-house'>${props.activeProperty.rent[2]}</span></div>
+        <div className='railroad-details-card-rent-with-house-container'>If 4 R.R.'s are owned <span className='property-details-card-rent-with-house'>${props.activeProperty.rent[3]}</span></div><br/><br/>
+        <div className='property-details-card-mortgage-value-container'>Mortgage Value <span className='property-details-card-mortgage-value'>${props.activeProperty.mortgageValue}</span></div>
+        </Modal.Body>
+        </> ) : props.activeProperty.type === 'property' ? (<>
+          <Modal.Header style={{backgroundColor:props.activeProperty.color.replace (rmWhitespace, ''), color:props.activeProperty.textColor}}>
+          <Modal.Title id="contained-modal-title-vcenter">
+            <div className="property-details-card-heading" >{props.activeProperty.name}</div>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className='property-details-card-rent'>Rent ${typeof props.activeProperty.rent === 'undefined' ? 0 : props.activeProperty.rent[0]}</div>
+        <br/>
+        <div className= 'property-details-card-rent-with-house-container'>With 1 House <span className='property-details-card-rent-with-house'>${props.activeProperty.rent[1]}</span></div>
+        <div className='property-details-card-rent-with-house-container'>With 2 Houses <span className='property-details-card-rent-with-house'>${props.activeProperty.rent[2]}</span></div>
+        <div className='property-details-card-rent-with-house-container'>With 3 Houses <span className='property-details-card-rent-with-house'>${props.activeProperty.rent[3]}</span></div>
+        <div className='property-details-card-rent-with-house-container'>With 4 Houses <span className='property-details-card-rent-with-house'>${props.activeProperty.rent[4]}</span></div>
+        <div className='property-details-card-rent-with-house-container'>With HOTEL <span className='property-details-card-rent-with-house'>${props.activeProperty.rent[5]}</span></div><br/>
+        <div className='property-details-card-mortgage-value-container'>Mortgage Value <span className='property-details-card-mortgage-value'>${props.activeProperty.mortgageValue}</span></div>
+        <div className='property-details-card-house-cost-container'>Houses Cost ${props.activeProperty.houseCost} each,<br/>Hotels ${props.activeProperty.houseCost} Each<br/>Plus 4 Houses.</div>
+        <div className='property-details-card-monopoly-fine-print'>If a player owns all the sites of any color group,<br/>the rent is doubled on unimporved sites in that group.</div>
+        </Modal.Body>
+        </>) : (<>
+          <Modal.Header className='utilities-details-modal-header'>
+          <Modal.Title id="contained-modal-title-vcenter">
+          <div className="property-details-card-heading" >{props.activeProperty.name}</div>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+        <div className='utility-details-card-icon'><FontAwesomeIcon icon={props.activeProperty.name === 'Electric Company' ? farLightbulb : faFaucet} /></div><br/>
+        <div className= 'utility-details-card'>If one Utility is owned, rent is 4 times the amount shown on dice.</div><br/>
+        <div className= 'utility-details-card'>If both Utilities are owned, rent is 10 times amount shown on dice.</div>
+        </Modal.Body>
+        </>)}
+      </Modal>
+    );
+
   }

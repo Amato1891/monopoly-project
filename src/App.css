@@ -163,7 +163,7 @@
 }
 
 .other-options {
-  margin-top: 270%;
+  margin-top: 50%;
 }
 
 .chance-pile {
@@ -427,4 +427,109 @@
 /* Use these classNamees to line the perimeter with the cells */
 .cell.top, .cell.bottom, .cell.left, .cell.right {
   background-color: lightgray;
+}
+
+.modal-header {
+  width: 100%;
+  justify-content: center !important;
+  
+}
+
+.railroad-details-modal-header {
+  background-color: rgb(26, 26, 26);
+  color: #eeeeee;
+}
+
+.utilities-details-modal-header {
+  background-color: rgb(219, 219, 219);
+}
+
+.property-details-card-heading {
+  font-size: 1.5em;
+  font-weight: 500;
+  font-family: 'BioRhyme', serif;
+}
+
+.property-details-card-rent {
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: 500;
+  font-family: 'BioRhyme', serif;
+}
+
+.property-details-card-rent-with-house {
+  text-align: right;
+  font-weight: 500;
+  font-family: 'BioRhyme', serif;
+}
+
+.property-details-card-rent-with-house-container {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 20%;
+  padding-right: 30%;
+  font-weight: 400;
+  font-family: 'BioRhyme', serif;
+}
+
+.property-details-card-mortgage-value-container {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 20%;
+  padding-right: 30%;
+  font-weight: 400;
+  font-size: 1.3em;
+  font-family: 'BioRhyme', serif;
+}
+
+.property-details-card-mortgage-value {
+  text-align: right;
+  font-weight: 900;
+  font-family: 'BioRhyme', serif;
+}
+
+.property-details-card-house-cost-container {
+  display: flex;
+  text-align: center;
+  padding-left: 30%;
+  padding-right: 30%;
+  font-weight: 500;
+  font-family: 'BioRhyme', serif;
+  font-size: 0.9em;
+}
+
+.property-details-card-monopoly-fine-print {
+  display: flex;
+  text-align: center;
+  padding-left: 30%;
+  padding-right: 30%;
+  font-weight: 400;
+  font-family: 'BioRhyme', serif;
+  font-size: 0.6em;
+}
+
+.railroad-details-card-rent-with-house-container {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 20%;
+  padding-right: 30%;
+  font-weight: 400;
+  font-family: 'BioRhyme', serif;
+}
+
+.utility-details-card {
+  display: flex;
+  text-align: center;
+  padding-left: 30%;
+  padding-right: 30%;
+  font-weight: 400;
+  font-family: 'BioRhyme', serif;
+  font-size: 1em;
+}
+
+.utility-details-card-icon {
+  display: flex;
+  justify-content: center;
+  font-size: 3em;
+  color: #aca000;
 }

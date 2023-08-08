@@ -1,0 +1,18 @@
+{
+    "utilities": [
+      {
+        "name": "Electric Company",
+        "type": "utility",
+        "price": 150,
+        "multiplier": { "1": 4, "2": 10 },
+        "mortgageValue": 75
+      },
+      {
+        "name": "Water Works",
+        "type": "utility",
+        "price": 150,
+        "multiplier": { "1": 4, "2": 10 },
+        "mortgageValue": 75
+      }
+    ]
+  }

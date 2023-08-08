@@ -7,7 +7,10 @@ import { Button } from 'react-bootstrap';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
 import {Dice} from './dice';
-import {DisplayModal, PlayerDetailsModal} from './modal';
+import {DisplayModal, PlayerDetailsModal, PropertyDetailsModal} from './modal';
+import propertyData from '../data/properties.json';
+import railRoadData from '../data/railroads.json';
+import utilitiesData from '../data/utilities.json';
 
 function Board() {
 
@@ -18,8 +21,11 @@ const [propertiesOwned, setPropertiesOwned] = useState([{name: 'ventnor ave', pr
 // other state managed components
 const [modalShow, setModalShow] = React.useState(true);
 const [playerDetailsModalShow, setPlayerDetailsModalShow] = React.useState(false);
+const [handlePropertyDetailsModalHide, setHandlePropertyDetailsModalHide] = React.useState(false);
 const [fullValue, setFullValue] = useState(0);
 const [numberOfPlayers, setNumberOfPlayers] = useState(0);
+const [activeProp, setActiveProp] = useState('');
+const [propertyModalShow, setPropertyModalShow] = React.useState(false);
 
 // generate id for players
 function generateRandomId() {
@@ -83,6 +89,20 @@ const handleFullValueChange = (value) => {
     }
   };
 
+  // hide the property details modal
+  const handlePropDetailsModalHide = () => {
+    setPropertyModalShow(false);
+  };
+
+  const handleLoadPropertyDetails = (e) => {
+    console.log (e.target.textContent)
+    let selectedProperty = propertyData.properties.find(property => property.name === e.target.textContent);
+    let selectedRailroad = selectedProperty ? console.log('property found') : railRoadData.railroads.find(railRoad => railRoad.name === e.target.textContent);
+    let selectedUtility = selectedRailroad || selectedProperty ? console.log('property/railroad found') : utilitiesData.utilities.find(utility => utility.name === e.target.textContent);
+    setPropertyModalShow (true);
+    return setActiveProp (selectedProperty || selectedRailroad || selectedUtility);
+  }
+
   // hide the player details modal
   const handlePlayerDetailsModalHide = (name, gamePiece) => {
     const playerObj = {
@@ -116,6 +136,12 @@ const handleFullValueChange = (value) => {
     show={playerDetailsModalShow}
     onHide={handlePlayerDetailsModalHide}
     />
+    <PropertyDetailsModal
+    show={propertyModalShow}
+    activeProperty={activeProp}
+    onHide={handlePropDetailsModalHide}
+    />
+
     {/* SIDEBAR */}
       <div className="sidebar">
   <ul>
@@ -195,7 +221,7 @@ const handleFullValueChange = (value) => {
     <ul>
       <li><a href='https://en.wikipedia.org/wiki/Monopoly_(game)#:~:text=license%20from%20them.-,Hasbro%20ownership,input%20in%20varying%20the%20game.' target="_blank">About</a></li>
       <li><a href='https://www.hasbro.com/common/instruct/00009.pdf' target="_blank">Rules</a></li>
-      <li><a onClick={() => window.location.reload()}>Restart Game</a></li>
+      <li><a href='#' onClick={() => window.location.reload()}>Restart Game</a></li>
     </ul>
   </div>
 </div>
@@ -225,109 +251,109 @@ const handleFullValueChange = (value) => {
     {/* bottom row properties */}
     <div className="cell cell-bottom visiting-jail cell-left" ></div>
 		<div className="cell light-blue cell-bottom">
-    <span className="prop-name">Connecticut Avenue</span>
+    <span className="prop-name" onClick={handleLoadPropertyDetails}>Connecticut Avenue</span>
     <span className="price">price $120</span></div>
     <div className="cell light-blue cell-bottom">
-    <span className="prop-name">Vermont Avenue</span>
+    <span className="prop-name" onClick={handleLoadPropertyDetails}>Vermont Avenue</span>
     <span className="price">price $100</span></div>
     <div className="cell cell-bottom chance"></div>
     <div className="cell light-blue cell-bottom">
-    <span className="prop-name">Oriental Avenue</span>
+    <span className="prop-name" onClick={handleLoadPropertyDetails}>Oriental Avenue</span>
     <span className="price">price $100</span></div>
     <div className="cell cell-bottom rail-road"> 
-    <span className="rr-and-utilities-name">Reading Railroad</span>
+    <span className="rr-and-utilities-name" onClick={handleLoadPropertyDetails}>Reading Railroad</span>
     <span className="price">price $200</span></div>
     <div className="cell cell-bottom">
     <span className="income-tax">Income Tax <br/><FontAwesomeIcon icon={faDiamond}/>
     <span className="income-tax-details"><br/>Pay 10% <br/> or <br/> $200</span>
 </span></div>
     <div className="cell cell-bottom brown">
-    <span className="prop-name">Baltic Avenue</span>
+    <span className="prop-name" onClick={handleLoadPropertyDetails}>Baltic Avenue</span>
     <span className="price">price $60</span></div>
     <div className="cell cell-bottom community-chest"></div>
     <div className="cell cell-bottom brown">
-    <span className="prop-name">Mediterranean Avenue</span>
+    <span className="prop-name" onClick={handleLoadPropertyDetails}>Mediterranean Avenue</span>
     <span className="price">price $60</span></div>
     <div className="cell go cell-bottom"></div>
 
     {/* left row properties */}
 		<div className="cell purple cell-left st-charles">
-    <span className="prop-name">St Charles Place</span>
+    <span className="prop-name" onClick={handleLoadPropertyDetails}>St. Charles Place</span>
     <span className="price">price $140</span></div>
 		<div className="cell cell-left electric electric-company">
-    <span className="rr-and-utilities-name">Electric Company</span>
+    <span className="rr-and-utilities-name" onClick={handleLoadPropertyDetails}>Electric Company</span>
     <span className="price">price $150</span></div>
 		<div className="cell cell-left purple states-ave">
-    <span className="prop-name">States Avenue</span>
+    <span className="prop-name" onClick={handleLoadPropertyDetails}>States Avenue</span>
     <span className="price">price $140</span></div>
 		<div className="cell cell-left purple virginia-ave">
-    <span className="prop-name">Virginia Avenue</span>
+    <span className="prop-name" onClick={handleLoadPropertyDetails}>Virginia Avenue</span>
     <span className="price">price $160</span></div>
 		<div className="cell cell-left rail-road penn-rr">
-    <span className="rr-and-utilities-name">Pennsylvania Railroad</span>
+    <span className="rr-and-utilities-name" onClick={handleLoadPropertyDetails}>Pennsylvania Railroad</span>
     <span className="price">price $200</span></div>
 		<div className="cell cell-left orange st-james">
-    <span className="prop-name">St James Place</span>
+    <span className="prop-name" onClick={handleLoadPropertyDetails}>St. James Place</span>
     <span className="price">price $180</span>
     </div>
 		<div className="cell cell-left community-chest-left community-chest"></div>
 		<div className="cell cell-left tennessee-ave orange ">
-    <span className="prop-name">Tennessee Avenue</span>
+    <span className="prop-name" onClick={handleLoadPropertyDetails}>Tennessee Avenue</span>
     <span className="price">price $180</span></div>
 		<div className="cell cell-left new-york-ave orange ">
-    <span className="prop-name">New York Avenue</span>
+    <span className="prop-name" onClick={handleLoadPropertyDetails}>New York Avenue</span>
     <span className="price">price $200</span></div>
 		<div className="cell cell-left free-parking"></div>
 
     {/* top row properties */}
 		<div className="cell red cell-top">
-    <span className="prop-name">Kentucky Avenue</span>
+    <span className="prop-name" onClick={handleLoadPropertyDetails}>Kentucky Avenue</span>
     <span className="price">price $220</span></div>
 		<div className="cell cell-top chance"></div>
 		<div className="cell red cell-top">
-    <span className="prop-name">Indiana Avenue</span>
+    <span className="prop-name" onClick={handleLoadPropertyDetails}>Indiana Avenue</span>
     <span className="price">price $220</span></div>
 		<div className="cell red cell-top">
-    <span className="prop-name">Illinois Avenue</span>
+    <span className="prop-name" onClick={handleLoadPropertyDetails}>Illinois Avenue</span>
     <span className="price">price $240</span></div>
 		<div className="cell rail-road cell-top">
-    <span className="rr-and-utilities-name">B & O Railroad</span>
+    <span className="rr-and-utilities-name" onClick={handleLoadPropertyDetails}>B. & O. Railroad</span>
     <span className="price">price $200</span></div>
 		<div className="cell yellow cell-top">
-    <span className="prop-name">Atlantic Avenue</span>
+    <span className="prop-name" onClick={handleLoadPropertyDetails}>Atlantic Avenue</span>
     <span className="price">price $260</span></div>
 		<div className="cell yellow cell-top">
-    <span className="prop-name">Ventnor Avenue</span>
+    <span className="prop-name" onClick={handleLoadPropertyDetails}>Ventnor Avenue</span>
     <span className="price">price $260</span></div>
 		<div className="cell water cell-top water-works">
-    <span className="rr-and-utilities-name">Water Works</span>
+    <span className="rr-and-utilities-name" onClick={handleLoadPropertyDetails}>Water Works</span>
     <span className="price">price $150</span></div>
 		<div className="cell yellow cell-top">
-    <span className="prop-name">Marvin Gardens</span>
+    <span className="prop-name" onClick={handleLoadPropertyDetails}>Marvin Gardens</span>
     <span className="price">price $280</span></div>
 		<div className="cell cell-top go-to-jail"></div>
 
     {/* right row properties */}
 		<div className="cell cell-right green">
-    <span className="prop-name">Pacific Avenue</span>
+    <span className="prop-name" onClick={handleLoadPropertyDetails}>Pacific Avenue</span>
     <span className="price">price $300</span></div>
 		<div className="cell cell-right green">
-    <span className="prop-name">North Carolina Avenue</span>
+    <span className="prop-name" onClick={handleLoadPropertyDetails}>North Carolina Avenue</span>
     <span className="price">price $300</span></div>
 		<div className="cell cell-right community-chest"></div>
     <div className="cell cell-right green">
-    <span className="prop-name">Pennsylvania Avenue</span>
+    <span className="prop-name" onClick={handleLoadPropertyDetails}>Pennsylvania Avenue</span>
     <span className="price">price $320</span></div>
 		<div className="cell cell-right rail-road">
-    <span className="rr-and-utilities-name">Short Line Railroad</span>
+    <span className="rr-and-utilities-name" onClick={handleLoadPropertyDetails}>Short Line Railroad</span>
     <span className="price">price $200</span></div>
 		<div className="cell cell-right chance"></div>
 		<div className="cell cell-right dark-blue">
-    <span className="prop-name">Park Place</span>
+    <span className="prop-name" onClick={handleLoadPropertyDetails}>Park Place</span>
     <span className="price">price $350</span></div>
 		<div className="cell cell-right luxury-tax"></div>
 		<div className="cell cell-right dark-blue">
-    <span className="prop-name">Boardwalk</span>
+    <span className="prop-name" onClick={handleLoadPropertyDetails}>Boardwalk</span>
     <span className="price">price $400</span></div>
 	</div>
   </div>
