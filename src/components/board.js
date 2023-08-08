@@ -2,7 +2,7 @@ import '../App.css';
 import '../sidebar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDiamond, faUser, faDice, faMoneyBill1, faHouse, faForward, faAddressCard } from '@fortawesome/free-solid-svg-icons';
-import React, { useState, useEffect  } from 'react';
+import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
@@ -21,7 +21,6 @@ const [propertiesOwned, setPropertiesOwned] = useState([{name: 'ventnor ave', pr
 // other state managed components
 const [modalShow, setModalShow] = React.useState(true);
 const [playerDetailsModalShow, setPlayerDetailsModalShow] = React.useState(false);
-const [handlePropertyDetailsModalHide, setHandlePropertyDetailsModalHide] = React.useState(false);
 const [fullValue, setFullValue] = useState(0);
 const [numberOfPlayers, setNumberOfPlayers] = useState(0);
 const [activeProp, setActiveProp] = useState('');
@@ -219,9 +218,9 @@ const handleFullValueChange = (value) => {
   </ul>
   <div className= "other-options">
     <ul>
-      <li><a href='https://en.wikipedia.org/wiki/Monopoly_(game)#:~:text=license%20from%20them.-,Hasbro%20ownership,input%20in%20varying%20the%20game.' target="_blank">About</a></li>
-      <li><a href='https://www.hasbro.com/common/instruct/00009.pdf' target="_blank">Rules</a></li>
-      <li><a href='#' onClick={() => window.location.reload()}>Restart Game</a></li>
+      <li><a href='https://en.wikipedia.org/wiki/Monopoly_(game)#:~:text=license%20from%20them.-,Hasbro%20ownership,input%20in%20varying%20the%20game.' target="_blank" rel="noreferrer">About</a></li>
+      <li><a href='https://www.hasbro.com/common/instruct/00009.pdf' target="_blank" rel="noreferrer">Rules</a></li>
+      <li><a href='#' rel="noreferrer" onClick={() => window.location.reload()}>Restart Game</a></li>
     </ul>
   </div>
 </div>

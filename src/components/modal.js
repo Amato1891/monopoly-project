@@ -1,7 +1,7 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
-import React, { useState, useEffect  } from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLightbulb as farLightbulb } from '@fortawesome/free-regular-svg-icons';
 import { faFaucet } from '@fortawesome/free-solid-svg-icons';
