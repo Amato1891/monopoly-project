@@ -53,7 +53,7 @@
       {
         "name": "St. Charles Place",
         "type": "property",
-        "color": "indigo",
+        "color": "purple",
         "textColor": "#eeeeee",
         "price": 140,
         "rent": [10, 50, 150, 450, 625, 750],
@@ -63,7 +63,7 @@
       {
         "name": "States Avenue",
         "type": "property",
-        "color": "indigo",
+        "color": "purple",
         "textColor": "#eeeeee",
         "price": 140,
         "rent": [10, 50, 150, 450, 625, 750],
@@ -73,7 +73,7 @@
       {
         "name": "Virginia Avenue",
         "type": "property",
-        "color": "indigo",
+        "color": "purple",
         "textColor": "#eeeeee",
         "price": 160,
         "rent": [12, 60, 180, 500, 700, 900],

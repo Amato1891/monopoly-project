@@ -1,16 +1,15 @@
 import '../App.css';
 import '../sidebar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDiamond, faUser, faDice, faMoneyBill1, faHouse, faForward, faAddressCard } from '@fortawesome/free-solid-svg-icons';
+import { faDiamond} from '@fortawesome/free-solid-svg-icons';
 import React, { useState } from 'react';
-import { Button } from 'react-bootstrap';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Popover from 'react-bootstrap/Popover';
 import {Dice} from './dice';
 import {DisplayModal, PlayerDetailsModal, PropertyDetailsModal} from './modal';
 import propertyData from '../data/properties.json';
 import railRoadData from '../data/railroads.json';
 import utilitiesData from '../data/utilities.json';
+import spacesData from '../data/spaces.json';
+import Sidebar from './Sidebar';
 
 function Board() {
 
@@ -47,37 +46,10 @@ function generateRandomId() {
     let newActivePlayer = indexOfCurrentPlayer+1 === players.length ? 0 : indexOfCurrentPlayer+1;
     setActivePlayer(players[newActivePlayer]);
   };
+
 const handleFullValueChange = (value) => {
     setFullValue(value);
   };
-
-  // property popover modal
-  const popover = (
-    <Popover id="popover-basic">
-      <Popover.Header as="h3">Properties</Popover.Header>
-      <Popover.Body>
-      <ul>
-  {propertiesOwned.map ((property) => {
-    return(
-      <li key={property.id}>
-        Name: {property.name}<br />
-        Price: {property.priceToBuy}<br />
-        Mortgage Price: {property.priceToMortgage}<br />
-        Tier: {property.color}<br />
-      </li>
-      )
-    })}
-</ul>
-      </Popover.Body>
-    </Popover>
-  );
-  
-  // open popover for properties
-  const ShowProperties = () => (
-    <OverlayTrigger trigger="click" placement="right" overlay={popover}>
-      <Button variant="dark" style={{ fontSize: '12px', width:'110px'}}>View Properties</Button>
-    </OverlayTrigger>
-  );
 
   // hide the player selection modal
   const handleModalHide = (totalPlayers) => {
@@ -130,6 +102,46 @@ const handleFullValueChange = (value) => {
     // show the dice so player can roll
     document.getElementsByClassName('dice-btn')[0].classList.remove('hidden');
   };
+
+
+
+  const PropertyCell = ({ name, onClick, additionalClasses }) => {
+    // Find the object in the JSON data that matches the provided name
+    const property = spacesData.spaces.find(space => (space.type === 'property' || space.type === 'rail-road' || space.type === 'utilities') && space.name === name);
+  
+    // If a matching property is found, extract relevant properties
+    if (property) {
+      const { color, price, location } = property;
+  
+      return (
+        <div className={`cell ${location} ${color} ${additionalClasses}`}>
+          <span className="prop-name" onClick={onClick}>
+            {name}
+          </span>
+          <span className="price">price {price}</span>
+        </div>
+      );
+    }
+  };
+  
+  const SpecialCell = ({ specialCellName, location, additionalClasses }) => (
+    <div className={`${specialCellName} ${location} ${additionalClasses || ''}`}></div>
+  );
+  
+  const IncomeTaxCell = () => (
+    <div className="cell cell-bottom">
+      <span className="income-tax">
+        Income Tax <br />
+        <FontAwesomeIcon icon={faDiamond} />
+        <span className="income-tax-details">
+          <br />Pay 10% <br /> or <br /> $200
+        </span>
+      </span>
+    </div>
+  );
+
+
+
   return (
    <div><DisplayModal
       show={modalShow}
@@ -144,90 +156,10 @@ const handleFullValueChange = (value) => {
     activeProperty={activeProp}
     onHide={handlePropDetailsModalHide}
     />
-
-    {/* SIDEBAR */}
-      <div className="sidebar">
-  <ul>
-  <li>
-  <div className="d-flex align-items-center">
-    <div className='tooltips'>
-      <span className="tooltiptext">{activePlayer?.name || ''} is up!</span>
-      <FontAwesomeIcon icon={faUser} style={{fontSize:"1.8em", width:'45px'}}/>&nbsp;&nbsp;
+    {/* SIDBAR */}
+<div className="app">
+      <Sidebar activePlayer={activePlayer} fullValue={fullValue} handleEndTurn={handleEndTurn} />
     </div>
-    <div className="flex-grow-1">
-      <Button variant="dark" style={{ width: '110px' }}>{activePlayer?.name || ''}</Button>
-    </div>
-  </div>
-</li>
-<li>
-  <div className="d-flex align-items-center">
-    <div className="tooltips">
-      <div className='tooltiptext'> Last roll</div>
-      <FontAwesomeIcon icon={faDice} style={{fontSize:"1.8em", width:'45px'}}/>&nbsp;&nbsp;
-    </div>
-    <div className="flex-grow-1">
-      <Button variant="dark" style={{ width: '110px' }}> {fullValue || ''} </Button>
-    </div>
-  </div>
-</li>
-
-<li>
-  <div className="d-flex align-items-center">
-    <div className="tooltips">
-      <div className='tooltiptext'> Cash</div>
-      <FontAwesomeIcon icon={faMoneyBill1} style={{color: "#1b884a",fontSize:"1.8em", width:'45px'}}/>&nbsp;&nbsp;
-    </div>
-    <div className="flex-grow-1">
-      <Button variant="success" style={{ width: '110px' }}>{activePlayer?.cash || ''}</Button>
-    </div>
-  </div>
-</li>
-
-<li>
-  <div className="d-flex align-items-center">
-    <div className="tooltips">
-      <div className='tooltiptext'> Buildings Owned</div>
-      <FontAwesomeIcon icon={faHouse} style={{"color": "#e10909", fontSize:"1.8em", width:'45px'}}/>&nbsp;&nbsp;
-    </div>
-    <div className="flex-grow-1">
-      <Button variant="danger" style={{ width: '110px' }}>{activePlayer?.housesOwned || 0}</Button>
-    </div>
-  </div>
-</li>
-
-<li>
-  <div className="d-flex align-items-center">
-    <div className="tooltips">
-      <div className='tooltiptext'> Properties</div>
-      <FontAwesomeIcon icon={faAddressCard} style={{fontSize:"1.8em", width:'45px'}}/>&nbsp;&nbsp;
-    </div>
-    <div className="flex-grow-1">
-      <ShowProperties/>
-    </div>
-  </div>
-</li>
-
-<li>
-  <div className="d-flex align-items-center">
-    <div className="tooltips">
-      <div className='tooltiptext'> End Your Turn</div>
-      <FontAwesomeIcon icon={faForward}style={{color: "#0255e3",fontSize:"1.8em", width:'45px'}} />&nbsp;&nbsp;
-    </div>
-    <div className="flex-grow-1">
-      <Button variant="primary" style={{ width: '110px' }} onClick={handleEndTurn}>End Turn</Button>
-    </div>
-  </div>
-</li>
-
-  </ul>
-  <div className= "other-options">
-    <ul>
-      <li><a href='https://en.wikipedia.org/wiki/Monopoly_(game)#:~:text=license%20from%20them.-,Hasbro%20ownership,input%20in%20varying%20the%20game.' target="_blank" rel="noreferrer">About</a></li>
-      <li><a href='https://www.hasbro.com/common/instruct/00009.pdf' target="_blank" rel="noreferrer">Rules</a></li>
-      <li onClick={() => window.location.reload()}>Restart Game</li>
-    </ul>
-  </div>
-</div>
 {/* GAMEBOARD */}
 <div className="main-content">
 </div>
@@ -252,7 +184,7 @@ const handleFullValueChange = (value) => {
           </div>
 
     {/* bottom row properties */}
-    <div className="cell cell-bottom visiting-jail cell-left" ></div>
+    {/* <div className="cell cell-bottom visiting-jail cell-left" ></div>
 		<div className="cell light-blue cell-bottom">
     <span className="prop-name" onClick={handleLoadPropertyDetails}>Connecticut Avenue</span>
     <span className="price">price $120</span></div>
@@ -270,31 +202,104 @@ const handleFullValueChange = (value) => {
     <span className="income-tax">Income Tax <br/><FontAwesomeIcon icon={faDiamond}/>
     <span className="income-tax-details"><br/>Pay 10% <br/> or <br/> $200</span>
 </span></div>
-    <div className="cell cell-bottom brown">
+<div className="cell cell-bottom brown">
     <span className="prop-name" onClick={handleLoadPropertyDetails}>Baltic Avenue</span>
     <span className="price">price $60</span></div>
     <div className="cell cell-bottom community-chest"></div>
     <div className="cell cell-bottom brown">
     <span className="prop-name" onClick={handleLoadPropertyDetails}>Mediterranean Avenue</span>
     <span className="price">price $60</span></div>
-    <div className="cell go cell-bottom"></div>
+    <div className="cell go cell-bottom"></div> */}
+
+    <SpecialCell
+    specialCellName = "visiting-jail"
+    location = "cell-left"
+    additionalClasses = "cell-bottom"
+    />
+    <PropertyCell
+      name="Connecticut Avenue"
+      onClick={handleLoadPropertyDetails}
+    />
+    <PropertyCell
+      name="Vermont Avenue"
+      onClick={handleLoadPropertyDetails}
+    />
+    <SpecialCell
+    specialCellName = "chance"
+    location = "cell-bottom"
+    additionalClasses = "cell"
+    />
+    <PropertyCell
+      name="Oriental Avenue"
+      onClick={handleLoadPropertyDetails}
+    />
+    <PropertyCell
+      name="Reading Railroad"
+      onClick={handleLoadPropertyDetails}
+    />
+    <IncomeTaxCell />
+    <PropertyCell
+      name="Baltic Avenue"
+      onClick={handleLoadPropertyDetails}
+    />
+    <SpecialCell
+    specialCellName = "community-chest"
+    location = "cell-bottom"
+    additionalClasses = "cell"
+    />
+    <PropertyCell
+      name="Mediterranean Avenue"
+      onClick={handleLoadPropertyDetails}
+    />
+    <SpecialCell
+    specialCellName = "go"
+    location = "cell-bottom"
+    additionalClasses = ""
+    />
+    <PropertyCell
+      name="St. Charles Place"
+      onClick={handleLoadPropertyDetails}
+      additionalClasses = "st-charles"
+    />
+   <PropertyCell
+      name="Electric Company"
+      onClick={handleLoadPropertyDetails}
+      additionalClasses = "electric-company"
+    />
+    <PropertyCell
+      name="States Avenue"
+      onClick={handleLoadPropertyDetails}
+      additionalClasses = "states-ave"
+    />
+    <PropertyCell
+      name="Virginia Avenue"
+      onClick={handleLoadPropertyDetails}
+      additionalClasses = "virginia-ave"
+    />
+    <PropertyCell
+      name="Pennsylvania Railroad"
+      onClick={handleLoadPropertyDetails}
+      additionalClasses = "penn-rr"
+    />
+    
+    
 
     {/* left row properties */}
-		<div className="cell purple cell-left st-charles">
+		{/* <div className="cell purple cell-left st-charles">
     <span className="prop-name" onClick={handleLoadPropertyDetails}>St. Charles Place</span>
-    <span className="price">price $140</span></div>
-		<div className="cell cell-left electric electric-company">
+    <span className="price">price $140</span></div> */}
+		{/* <div className="cell cell-left electric electric-company">
     <span className="rr-and-utilities-name" onClick={handleLoadPropertyDetails}>Electric Company</span>
-    <span className="price">price $150</span></div>
-		<div className="cell cell-left purple states-ave">
+    <span className="price">price $150</span></div> */}
+		{/* <div className="cell cell-left purple states-ave">
     <span className="prop-name" onClick={handleLoadPropertyDetails}>States Avenue</span>
-    <span className="price">price $140</span></div>
-		<div className="cell cell-left purple virginia-ave">
+    <span className="price">price $140</span></div> */}
+		{/* <div className="cell cell-left purple virginia-ave">
     <span className="prop-name" onClick={handleLoadPropertyDetails}>Virginia Avenue</span>
-    <span className="price">price $160</span></div>
-		<div className="cell cell-left rail-road penn-rr">
+    <span className="price">price $160</span></div> */}
+		{/* <div className="cell cell-left rail-road penn-rr">
     <span className="rr-and-utilities-name" onClick={handleLoadPropertyDetails}>Pennsylvania Railroad</span>
-    <span className="price">price $200</span></div>
+    <span className="price">price $200</span></div> */}
 		<div className="cell cell-left orange st-james">
     <span className="prop-name" onClick={handleLoadPropertyDetails}>St. James Place</span>
     <span className="price">price $180</span>
