@@ -105,7 +105,7 @@ const handleFullValueChange = (value) => {
 
 
 
-  const PropertyCell = ({ name, onClick, additionalClasses }) => {
+  const PropertyCell = ({ name, additionalClasses }) => {
     // Find the object in the JSON data that matches the provided name
     const property = spacesData.spaces.find(space => (space.type === 'property' || space.type === 'rail-road' || space.type === 'utilities') && space.name === name);
   
@@ -114,8 +114,8 @@ const handleFullValueChange = (value) => {
       const { color, price, location } = property;
   
       return (
-        <div className={`cell ${location} ${color} ${additionalClasses}`}>
-          <span className="prop-name" onClick={onClick}>
+        <div className={`cell ${location} ${color} ${additionalClasses||''}`}>
+          <span className="prop-name" onClick={handleLoadPropertyDetails}>
             {name}
           </span>
           <span className="price">price {price}</span>
@@ -182,35 +182,7 @@ const handleFullValueChange = (value) => {
           <span className="chance-text">Chance</span>
           </div>
           </div>
-
-    {/* bottom row properties */}
-    {/* <div className="cell cell-bottom visiting-jail cell-left" ></div>
-		<div className="cell light-blue cell-bottom">
-    <span className="prop-name" onClick={handleLoadPropertyDetails}>Connecticut Avenue</span>
-    <span className="price">price $120</span></div>
-    <div className="cell light-blue cell-bottom">
-    <span className="prop-name" onClick={handleLoadPropertyDetails}>Vermont Avenue</span>
-    <span className="price">price $100</span></div>
-    <div className="cell cell-bottom chance"></div>
-    <div className="cell light-blue cell-bottom">
-    <span className="prop-name" onClick={handleLoadPropertyDetails}>Oriental Avenue</span>
-    <span className="price">price $100</span></div>
-    <div className="cell cell-bottom rail-road"> 
-    <span className="rr-and-utilities-name" onClick={handleLoadPropertyDetails}>Reading Railroad</span>
-    <span className="price">price $200</span></div>
-    <div className="cell cell-bottom">
-    <span className="income-tax">Income Tax <br/><FontAwesomeIcon icon={faDiamond}/>
-    <span className="income-tax-details"><br/>Pay 10% <br/> or <br/> $200</span>
-</span></div>
-<div className="cell cell-bottom brown">
-    <span className="prop-name" onClick={handleLoadPropertyDetails}>Baltic Avenue</span>
-    <span className="price">price $60</span></div>
-    <div className="cell cell-bottom community-chest"></div>
-    <div className="cell cell-bottom brown">
-    <span className="prop-name" onClick={handleLoadPropertyDetails}>Mediterranean Avenue</span>
-    <span className="price">price $60</span></div>
-    <div className="cell go cell-bottom"></div> */}
-
+{/* PROPERTY SPACES */}
     <SpecialCell
     specialCellName = "visiting-jail"
     location = "cell-left"
@@ -218,11 +190,9 @@ const handleFullValueChange = (value) => {
     />
     <PropertyCell
       name="Connecticut Avenue"
-      onClick={handleLoadPropertyDetails}
     />
     <PropertyCell
       name="Vermont Avenue"
-      onClick={handleLoadPropertyDetails}
     />
     <SpecialCell
     specialCellName = "chance"
@@ -231,16 +201,13 @@ const handleFullValueChange = (value) => {
     />
     <PropertyCell
       name="Oriental Avenue"
-      onClick={handleLoadPropertyDetails}
     />
     <PropertyCell
-      name="Reading Railroad"
-      onClick={handleLoadPropertyDetails}
+      name="Reading Railroad" 
     />
     <IncomeTaxCell />
     <PropertyCell
       name="Baltic Avenue"
-      onClick={handleLoadPropertyDetails}
     />
     <SpecialCell
     specialCellName = "community-chest"
@@ -249,120 +216,122 @@ const handleFullValueChange = (value) => {
     />
     <PropertyCell
       name="Mediterranean Avenue"
-      onClick={handleLoadPropertyDetails}
     />
     <SpecialCell
     specialCellName = "go"
     location = "cell-bottom"
-    additionalClasses = ""
+    additionalClasses = "cell"
     />
     <PropertyCell
       name="St. Charles Place"
-      onClick={handleLoadPropertyDetails}
       additionalClasses = "st-charles"
     />
    <PropertyCell
       name="Electric Company"
-      onClick={handleLoadPropertyDetails}
       additionalClasses = "electric-company"
     />
     <PropertyCell
       name="States Avenue"
-      onClick={handleLoadPropertyDetails}
       additionalClasses = "states-ave"
     />
     <PropertyCell
       name="Virginia Avenue"
-      onClick={handleLoadPropertyDetails}
       additionalClasses = "virginia-ave"
     />
     <PropertyCell
       name="Pennsylvania Railroad"
-      onClick={handleLoadPropertyDetails}
       additionalClasses = "penn-rr"
     />
-    
-    
-
-    {/* left row properties */}
-		{/* <div className="cell purple cell-left st-charles">
-    <span className="prop-name" onClick={handleLoadPropertyDetails}>St. Charles Place</span>
-    <span className="price">price $140</span></div> */}
-		{/* <div className="cell cell-left electric electric-company">
-    <span className="rr-and-utilities-name" onClick={handleLoadPropertyDetails}>Electric Company</span>
-    <span className="price">price $150</span></div> */}
-		{/* <div className="cell cell-left purple states-ave">
-    <span className="prop-name" onClick={handleLoadPropertyDetails}>States Avenue</span>
-    <span className="price">price $140</span></div> */}
-		{/* <div className="cell cell-left purple virginia-ave">
-    <span className="prop-name" onClick={handleLoadPropertyDetails}>Virginia Avenue</span>
-    <span className="price">price $160</span></div> */}
-		{/* <div className="cell cell-left rail-road penn-rr">
-    <span className="rr-and-utilities-name" onClick={handleLoadPropertyDetails}>Pennsylvania Railroad</span>
-    <span className="price">price $200</span></div> */}
-		<div className="cell cell-left orange st-james">
-    <span className="prop-name" onClick={handleLoadPropertyDetails}>St. James Place</span>
-    <span className="price">price $180</span>
-    </div>
-		<div className="cell cell-left community-chest-left community-chest"></div>
-		<div className="cell cell-left tennessee-ave orange ">
-    <span className="prop-name" onClick={handleLoadPropertyDetails}>Tennessee Avenue</span>
-    <span className="price">price $180</span></div>
-		<div className="cell cell-left new-york-ave orange ">
-    <span className="prop-name" onClick={handleLoadPropertyDetails}>New York Avenue</span>
-    <span className="price">price $200</span></div>
-		<div className="cell cell-left free-parking"></div>
-
-    {/* top row properties */}
-		<div className="cell red cell-top">
-    <span className="prop-name" onClick={handleLoadPropertyDetails}>Kentucky Avenue</span>
-    <span className="price">price $220</span></div>
-		<div className="cell cell-top chance"></div>
-		<div className="cell red cell-top">
-    <span className="prop-name" onClick={handleLoadPropertyDetails}>Indiana Avenue</span>
-    <span className="price">price $220</span></div>
-		<div className="cell red cell-top">
-    <span className="prop-name" onClick={handleLoadPropertyDetails}>Illinois Avenue</span>
-    <span className="price">price $240</span></div>
-		<div className="cell rail-road cell-top">
-    <span className="rr-and-utilities-name" onClick={handleLoadPropertyDetails}>B. & O. Railroad</span>
-    <span className="price">price $200</span></div>
-		<div className="cell yellow cell-top">
-    <span className="prop-name" onClick={handleLoadPropertyDetails}>Atlantic Avenue</span>
-    <span className="price">price $260</span></div>
-		<div className="cell yellow cell-top">
-    <span className="prop-name" onClick={handleLoadPropertyDetails}>Ventnor Avenue</span>
-    <span className="price">price $260</span></div>
-		<div className="cell water cell-top water-works">
-    <span className="rr-and-utilities-name" onClick={handleLoadPropertyDetails}>Water Works</span>
-    <span className="price">price $150</span></div>
-		<div className="cell yellow cell-top">
-    <span className="prop-name" onClick={handleLoadPropertyDetails}>Marvin Gardens</span>
-    <span className="price">price $280</span></div>
-		<div className="cell cell-top go-to-jail"></div>
-
-    {/* right row properties */}
-		<div className="cell cell-right green">
-    <span className="prop-name" onClick={handleLoadPropertyDetails}>Pacific Avenue</span>
-    <span className="price">price $300</span></div>
-		<div className="cell cell-right green">
-    <span className="prop-name" onClick={handleLoadPropertyDetails}>North Carolina Avenue</span>
-    <span className="price">price $300</span></div>
-		<div className="cell cell-right community-chest"></div>
-    <div className="cell cell-right green">
-    <span className="prop-name" onClick={handleLoadPropertyDetails}>Pennsylvania Avenue</span>
-    <span className="price">price $320</span></div>
-		<div className="cell cell-right rail-road">
-    <span className="rr-and-utilities-name" onClick={handleLoadPropertyDetails}>Short Line Railroad</span>
-    <span className="price">price $200</span></div>
-		<div className="cell cell-right chance"></div>
-		<div className="cell cell-right dark-blue">
-    <span className="prop-name" onClick={handleLoadPropertyDetails}>Park Place</span>
-    <span className="price">price $350</span></div>
-		<div className="cell cell-right luxury-tax"></div>
-		<div className="cell cell-right dark-blue">
-    <span className="prop-name" onClick={handleLoadPropertyDetails}>Boardwalk</span>
-    <span className="price">price $400</span></div>
+    <PropertyCell
+      name="St. James Place"
+      additionalClasses = "st-james"
+    />
+    <SpecialCell
+    specialCellName = "community-chest"
+    location = "cell-left"
+    additionalClasses = "cell community-chest-left"
+    />
+    <PropertyCell
+      name="Tennessee Avenue"
+      additionalClasses = "tennessee-ave"
+    />
+    <PropertyCell
+      name="New York Avenue"
+      additionalClasses = "new-york-ave"
+    />
+    <SpecialCell
+    specialCellName = "Free Parking"
+    location = "cell-left"
+    additionalClasses = "free-parking"
+    />
+    <PropertyCell
+      name="Kentucky Avenue"
+    />
+    <SpecialCell
+    specialCellName = "chance"
+    location = "cell-top"
+    additionalClasses = "cell"
+    />
+    <PropertyCell
+      name="Indiana Avenue"
+    />
+    <PropertyCell
+      name="Illinois Avenue"
+    />
+    <PropertyCell
+      name="B. & O. Railroad"
+    />
+    <PropertyCell
+      name="Atlantic Avenue"
+    />
+    <PropertyCell
+      name="Ventnor Avenue"
+    />
+    <PropertyCell
+      name="Water Works"
+      additionalClasses = "water water-works"
+    />
+    <PropertyCell
+      name="Marvin Gardens"
+    />
+    <SpecialCell
+    specialCellName = "Go To Jail"
+    location = "cell-top"
+    additionalClasses = "go-to-jail"
+    />
+    <PropertyCell
+      name="Pacific Avenue"
+    />
+    <PropertyCell
+      name="North Carolina Avenue"
+    />
+    <SpecialCell
+    specialCellName = "community-chest"
+    location = "cell-right"
+    additionalClasses = "cell community-chest"
+    />
+    <PropertyCell
+      name="Pennsylvania Avenue"
+    />
+    <PropertyCell
+      name="Short Line Railroad"
+    />
+    <SpecialCell
+    specialCellName = "chance"
+    location = "cell-right"
+    additionalClasses = "cell"
+    />
+    <PropertyCell
+      name="Park Place"
+    />
+    <SpecialCell
+    specialCellName = "Luxury Tax"
+    location = "cell-right"
+    additionalClasses = "luxury-tax"
+    />
+    <PropertyCell
+      name="Boardwalk"
+    />
 	</div>
   </div>
   );
