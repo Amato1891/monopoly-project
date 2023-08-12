@@ -1,0 +1,57 @@
+.dice-container {
+  padding: 20px;
+}
+
+.dice {
+  width: 75px;
+  height: 75px;
+  perspective: 1000px;
+  border-radius: 15%;
+  display: grid;
+  overflow: hidden;
+  position: relative;
+  border: #000 solid 3px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-areas:
+    "top-left center top-right"
+    "middle-left center middle-right"
+    "bottom-left center bottom-right";
+}
+
+.side {
+  width: 75px;
+  height: 75px;
+  background-color: #fff;
+  border: 1px solid #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  transform-style: preserve-3d;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  background-color: #000;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.center { top: 40%; left: 40%; }
+.top-left { top: 10%; left: 10%; }
+.top-right { top: 10%; right: 10%; }
+.middle-left { top: 40%; left: 10%; }
+.middle-right { top: 40%; right: 10%; }
+.bottom-left { bottom: 10%; left: 10%; }
+.bottom-right { bottom: 10%; right: 10%; }
+
+.roll-button {
+  transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.2s ease;
+}
+
+.roll-button:active {
+  transform: scale(0.9) translateY(2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}

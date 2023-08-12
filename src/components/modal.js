@@ -62,10 +62,8 @@ export function DisplayModal(props) {
           document.getElementsByClassName(gamePiece)[0].classList.add('hidden');
           setName('');
           setGamePiece('');
-          console.log(`were at ${numberOfPlayers} players. `)
           numberOfPlayers+1 >= 2 ? setShouldRenderButton (true) : setShouldRenderButton (false);
           numberOfPlayers+1 >= 2 ? setShowCharSelectModal (false) : setShowCharSelectModal (true)
-          console.log(numberOfPlayers)
         }
         setNumberOfPlayers(numberOfPlayers+1);
       };
@@ -166,46 +164,46 @@ export function DisplayModal(props) {
         keyboard={false}
         onClick={handleButtonClick}
       >
-        {props.activeProperty.type === 'railroad' ? (<>
+        {props.activeproperty.type === 'railroad' ? (<>
         <Modal.Header className='railroad-details-modal-header'>
           <Modal.Title id="contained-modal-title-vcenter">
-            <div className="property-details-card-heading" >{props.activeProperty.name}</div>
+            <div className="property-details-card-heading" >{props.activeproperty.name}</div>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div className='property-details-card-rent'>Rent ${typeof props.activeProperty.rent === 'undefined' ? 0 : props.activeProperty.rent[0]}</div>
+          <div className='property-details-card-rent'>Rent ${typeof props.activeproperty.rent === 'undefined' ? 0 : props.activeproperty.rent[0]}</div>
         <br/>
-        <div className= 'railroad-details-card-rent-with-house-container'>If 2 R.R.'s are owned <span className='property-details-card-rent-with-house'>${props.activeProperty.rent[1]}</span></div>
-        <div className='railroad-details-card-rent-with-house-container'>If 3 R.R.'s are owned <span className='property-details-card-rent-with-house'>${props.activeProperty.rent[2]}</span></div>
-        <div className='railroad-details-card-rent-with-house-container'>If 4 R.R.'s are owned <span className='property-details-card-rent-with-house'>${props.activeProperty.rent[3]}</span></div><br/><br/>
-        <div className='property-details-card-mortgage-value-container'>Mortgage Value <span className='property-details-card-mortgage-value'>${props.activeProperty.mortgageValue}</span></div>
+        <div className= 'railroad-details-card-rent-with-house-container'>If 2 R.R.'s are owned <span className='property-details-card-rent-with-house'>${props.activeproperty.rent[1]}</span></div>
+        <div className='railroad-details-card-rent-with-house-container'>If 3 R.R.'s are owned <span className='property-details-card-rent-with-house'>${props.activeproperty.rent[2]}</span></div>
+        <div className='railroad-details-card-rent-with-house-container'>If 4 R.R.'s are owned <span className='property-details-card-rent-with-house'>${props.activeproperty.rent[3]}</span></div><br/><br/>
+        <div className='property-details-card-mortgage-value-container'>Mortgage Value <span className='property-details-card-mortgage-value'>${props.activeproperty.mortgageValue}</span></div>
         </Modal.Body>
-        </> ) : props.activeProperty.type === 'property' ? (<>
-          <Modal.Header style={{backgroundColor:props.activeProperty.color.replace (rmWhitespace, ''), color:props.activeProperty.textColor}}>
+        </> ) : props.activeproperty.type === 'property' ? (<>
+          <Modal.Header style={{backgroundColor:props.activeproperty.color.replace (rmWhitespace, ''), color:props.activeproperty.textColor}}>
           <Modal.Title id="contained-modal-title-vcenter">
-            <div className="property-details-card-heading" >{props.activeProperty.name}</div>
+            <div className="property-details-card-heading" >{props.activeproperty.name}</div>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div className='property-details-card-rent'>Rent ${typeof props.activeProperty.rent === 'undefined' ? 0 : props.activeProperty.rent[0]}</div>
+          <div className='property-details-card-rent'>Rent ${typeof props.activeproperty.rent === 'undefined' ? 0 : props.activeproperty.rent[0]}</div>
         <br/>
-        <div className= 'property-details-card-rent-with-house-container'>With 1 House <span className='property-details-card-rent-with-house'>${props.activeProperty.rent[1]}</span></div>
-        <div className='property-details-card-rent-with-house-container'>With 2 Houses <span className='property-details-card-rent-with-house'>${props.activeProperty.rent[2]}</span></div>
-        <div className='property-details-card-rent-with-house-container'>With 3 Houses <span className='property-details-card-rent-with-house'>${props.activeProperty.rent[3]}</span></div>
-        <div className='property-details-card-rent-with-house-container'>With 4 Houses <span className='property-details-card-rent-with-house'>${props.activeProperty.rent[4]}</span></div>
-        <div className='property-details-card-rent-with-house-container'>With HOTEL <span className='property-details-card-rent-with-house'>${props.activeProperty.rent[5]}</span></div><br/>
-        <div className='property-details-card-mortgage-value-container'>Mortgage Value <span className='property-details-card-mortgage-value'>${props.activeProperty.mortgageValue}</span></div>
-        <div className='property-details-card-house-cost-container'>Houses Cost ${props.activeProperty.houseCost} each,<br/>Hotels ${props.activeProperty.houseCost} Each<br/>Plus 4 Houses.</div>
+        <div className= 'property-details-card-rent-with-house-container'>With 1 House <span className='property-details-card-rent-with-house'>${props.activeproperty.rent[1]}</span></div>
+        <div className='property-details-card-rent-with-house-container'>With 2 Houses <span className='property-details-card-rent-with-house'>${props.activeproperty.rent[2]}</span></div>
+        <div className='property-details-card-rent-with-house-container'>With 3 Houses <span className='property-details-card-rent-with-house'>${props.activeproperty.rent[3]}</span></div>
+        <div className='property-details-card-rent-with-house-container'>With 4 Houses <span className='property-details-card-rent-with-house'>${props.activeproperty.rent[4]}</span></div>
+        <div className='property-details-card-rent-with-house-container'>With HOTEL <span className='property-details-card-rent-with-house'>${props.activeproperty.rent[5]}</span></div><br/>
+        <div className='property-details-card-mortgage-value-container'>Mortgage Value <span className='property-details-card-mortgage-value'>${props.activeproperty.mortgageValue}</span></div>
+        <div className='property-details-card-house-cost-container'>Houses Cost ${props.activeproperty.houseCost} each,<br/>Hotels ${props.activeproperty.houseCost} Each<br/>Plus 4 Houses.</div>
         <div className='property-details-card-monopoly-fine-print'>If a player owns all the sites of any color group,<br/>the rent is doubled on unimporved sites in that group.</div>
         </Modal.Body>
         </>) : (<>
           <Modal.Header className='utilities-details-modal-header'>
           <Modal.Title id="contained-modal-title-vcenter">
-          <div className="property-details-card-heading" >{props.activeProperty.name}</div>
+          <div className="property-details-card-heading" >{props.activeproperty.name}</div>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <div className='utility-details-card-icon'><FontAwesomeIcon icon={props.activeProperty.name === 'Electric Company' ? farLightbulb : faFaucet} /></div><br/>
+        <div className='utility-details-card-icon'><FontAwesomeIcon icon={props.activeproperty.name === 'Electric Company' ? farLightbulb : faFaucet} /></div><br/>
         <div className= 'utility-details-card'>If one Utility is owned, rent is 4 times the amount shown on dice.</div><br/>
         <div className= 'utility-details-card'>If both Utilities are owned, rent is 10 times amount shown on dice.</div>
         </Modal.Body>
