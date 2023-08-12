@@ -7,10 +7,9 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
 
 
-function Sidebar({ activePlayer, fullValue, handleEndTurn }) {
+function Sidebar({ activePlayer, rolledValue, handleEndTurn }) {
 
     const [propertiesOwned, setPropertiesOwned] = useState([{name: 'ventnor ave', priceToBuy: 260, priceToMortgage: 130, color: 'yellow'}]);
-    console.log(handleEndTurn)
     // open popover for properties
   const ShowProperties = () => (
     <OverlayTrigger trigger="click" placement="right" overlay={popover}>
@@ -24,9 +23,9 @@ function Sidebar({ activePlayer, fullValue, handleEndTurn }) {
       <Popover.Header as="h3">Properties</Popover.Header>
       <Popover.Body>
       <ul>
-  {propertiesOwned.map ((property) => {
+  {propertiesOwned.map ((property, index) => {
     return(
-      <li key={property.id}>
+      <li key={index}>
         Name: {property.name}<br />
         Price: {property.priceToBuy}<br />
         Mortgage Price: {property.priceToMortgage}<br />
@@ -61,7 +60,7 @@ function Sidebar({ activePlayer, fullValue, handleEndTurn }) {
       <FontAwesomeIcon icon={faDice} style={{fontSize:"1.8em", width:'45px'}}/>&nbsp;&nbsp;
     </div>
     <div className="flex-grow-1">
-      <Button variant="dark" style={{ width: '110px' }}> {fullValue || ''} </Button>
+      <Button variant="dark" style={{ width: '110px' }}> {rolledValue || ''} </Button>
     </div>
   </div>
 </li>
@@ -81,7 +80,7 @@ function Sidebar({ activePlayer, fullValue, handleEndTurn }) {
 <li>
   <div className="d-flex align-items-center">
     <div className="tooltips">
-      <div className='tooltiptext'> Buildings Owned</div>
+      <div className='tooltiptext'> Buildings Owned </div>
       <FontAwesomeIcon icon={faHouse} style={{"color": "#e10909", fontSize:"1.8em", width:'45px'}}/>&nbsp;&nbsp;
     </div>
     <div className="flex-grow-1">
