@@ -3,7 +3,6 @@ import '../sidebar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDiamond} from '@fortawesome/free-solid-svg-icons';
 import React, { useState } from 'react';
-import {Dice} from './dice';
 import {DisplayModal, PlayerDetailsModal, PropertyDetailsModal} from './modal';
 import propertyData from '../data/properties.json';
 import railRoadData from '../data/railroads.json';

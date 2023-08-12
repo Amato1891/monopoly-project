@@ -33,32 +33,3 @@
     margin-left: 200px; /* Same as sidebar width */
     padding: 20px;
   }
-
-  .tooltips {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .tooltips .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: #555;
-    color: #fff;
-    text-align: center;
-    padding: 5px 0;
-    border-radius: 6px;
-    position: absolute;
-    z-index: 1;
-    bottom: 100%;
-    left: 50%;
-    margin-left: -60px;
-    position: absolute;
-    bottom: -30px;
-    left: 90px;
-    top: auto;
-  }
-  
-  .tooltips:hover .tooltiptext {
-    visibility: visible;
-    transition-delay: 300ms;
-  }

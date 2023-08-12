@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import anime from 'animejs';
 import { Button } from 'react-bootstrap';
 import '../dice.css';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 
 const DiceRoller = ({onRoll, resetDice}) => {
   const [diceValues, setDiceValues] = useState([1, 1]);
@@ -31,6 +33,7 @@ const DiceRoller = ({onRoll, resetDice}) => {
     } else {
         setHideBtn (true);
         setRolledDoubles (false);
+        setRolledDoublesTwice (false);
     } 
   };
 
@@ -94,12 +97,22 @@ const DiceRoller = ({onRoll, resetDice}) => {
           </div>
         ))}
       </div>
+      <OverlayTrigger
+      placement="top"
+      delay={{ show: 500, hide: 100 }}
+      overlay={
+      <Tooltip>
+        {rolledDoubles ? "Rolled Doubles, Roll Again!" : rolledDoublesTwice ? "Rolled Doubles Twice, If You Roll Doubles Again Your Going To Jail!" : "Roll Dice" }
+        </Tooltip>
+        }
+    >
       <Button
         variant= {rolledDoubles ? "warning" : rolledDoublesTwice ? "danger" : "info" }
         className="roll-button"
         onClick={rollBothDice}
         style={{display: hideBtn ? 'none' : 'block' }}
       >Roll</Button>
+      </OverlayTrigger>
     </div>
   );
 };

@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { Button } from 'react-bootstrap'; // Make sure to import any other necessary components
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faDice, faMoneyBill1, faHouse, faAddressCard, faForward } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faDice, faMoneyBill1, faHouse, faAddressCard, faForward, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import '../sidebar.css';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
+import Tooltip from 'react-bootstrap/Tooltip';
 
 
 function Sidebar({ activePlayer, rolledValue, handleEndTurn }) {
+  const renderTooltip = (text) => <Tooltip>{text}</Tooltip>;
+  const [sidebarVisible, setSidebarVisible] = useState(true);
 
     const [propertiesOwned, setPropertiesOwned] = useState([{name: 'ventnor ave', priceToBuy: 260, priceToMortgage: 130, color: 'yellow'}]);
     // open popover for properties
@@ -38,81 +41,101 @@ function Sidebar({ activePlayer, rolledValue, handleEndTurn }) {
     </Popover>
   );
 
+  const toggleSidebarVisibility = () => {
+    sidebarVisible === true ? setSidebarVisible (false) : setSidebarVisible (true);
+  }
+
     return (<>
       {/* SIDEBAR */}
-      <div className="sidebar">
+      {sidebarVisible ? (
+        <div className={`sidebar ${sidebarVisible ? '' : 'collapsed'}`}>
+          <div>
+          <OverlayTrigger placement="right" delay={{ show: 500, hide: 100 }} overlay={renderTooltip(sidebarVisible ? 'collapse' : 'expand')}>
+          <FontAwesomeIcon icon={sidebarVisible ? faChevronUp : faChevronDown} onClick={toggleSidebarVisibility} style={{ color: "#000000", fontSize: "1.8em", width: '45px' }} />
+        </OverlayTrigger>
   <ul>
   <li>
-  <div className="d-flex align-items-center">
-    <div className='tooltips'>
-      <span className="tooltiptext">{activePlayer?.name || ''} is up!</span>
-      <FontAwesomeIcon icon={faUser} style={{fontSize:"1.8em", width:'45px'}}/>&nbsp;&nbsp;
-    </div>
-    <div className="flex-grow-1">
-      <Button variant="dark" style={{ width: '110px' }}>{activePlayer?.name || ''}</Button>
-    </div>
-  </div>
-</li>
+            <div className="d-flex align-items-center">
+              <OverlayTrigger placement="top" delay={{ show: 500, hide: 100 }} overlay={renderTooltip(`${activePlayer?.name || ''} is up!`)}>
+                <div className="tooltips">
+                  <FontAwesomeIcon icon={faUser} style={{ fontSize: "1.8em", width: '45px' }} />&nbsp;&nbsp;
+                </div>
+              </OverlayTrigger>
+              <div className="flex-grow-1">
+                <Button variant="dark" style={{ width: '110px' }}>
+                  {activePlayer?.name || ''}
+                </Button>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div className="d-flex align-items-center">
+              <OverlayTrigger placement="top" delay={{ show: 500, hide: 100 }} overlay={renderTooltip("Last roll")}>
+                <div className="tooltips">
+                  <FontAwesomeIcon icon={faDice} style={{ fontSize: "1.8em", width: '45px' }} />&nbsp;&nbsp;
+                </div>
+              </OverlayTrigger>
+              <div className="flex-grow-1">
+                <Button variant="dark" style={{ width: '110px' }}>
+                  {rolledValue || '0'}
+                </Button>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div className="d-flex align-items-center">
+              <OverlayTrigger placement="top" delay={{ show: 500, hide: 100 }} overlay={renderTooltip("Cash")}>
+                <div className="tooltips">
+                  <FontAwesomeIcon icon={faMoneyBill1} style={{ color: "#1b884a", fontSize: "1.8em", width: '45px' }} />&nbsp;&nbsp;
+                </div>
+              </OverlayTrigger>
+              <div className="flex-grow-1">
+                <Button variant="success" style={{ width: '110px' }}>
+                  {activePlayer?.cash || ''}
+                </Button>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div className="d-flex align-items-center">
+              <OverlayTrigger placement="top" delay={{ show: 500, hide: 100 }} overlay={renderTooltip("Buildings Owned")}>
+                <div className="tooltips">
+                  <FontAwesomeIcon icon={faHouse} style={{ color: "#e10909", fontSize: "1.8em", width: '45px' }} />&nbsp;&nbsp;
+                </div>
+              </OverlayTrigger>
+              <div className="flex-grow-1">
+                <Button variant="danger" style={{ width: '110px' }}>
+                  {activePlayer?.housesOwned || 0}
+                </Button>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div className="d-flex align-items-center">
+              <OverlayTrigger placement="top" delay={{ show: 500, hide: 100 }} overlay={renderTooltip("Properties")}>
+                <div className="tooltips">
+                  <FontAwesomeIcon icon={faAddressCard} style={{ fontSize: "1.8em", width: '45px' }} />&nbsp;&nbsp;
+                </div>
+              </OverlayTrigger>
+              <div className="flex-grow-1">
+                <ShowProperties />
+              </div>
+            </div>
+          </li>
 <li>
-  <div className="d-flex align-items-center">
-    <div className="tooltips">
-      <div className='tooltiptext'> Last roll</div>
-      <FontAwesomeIcon icon={faDice} style={{fontSize:"1.8em", width:'45px'}}/>&nbsp;&nbsp;
-    </div>
-    <div className="flex-grow-1">
-      <Button variant="dark" style={{ width: '110px' }}> {rolledValue || ''} </Button>
-    </div>
-  </div>
-</li>
-
-<li>
-  <div className="d-flex align-items-center">
-    <div className="tooltips">
-      <div className='tooltiptext'> Cash</div>
-      <FontAwesomeIcon icon={faMoneyBill1} style={{color: "#1b884a",fontSize:"1.8em", width:'45px'}}/>&nbsp;&nbsp;
-    </div>
-    <div className="flex-grow-1">
-      <Button variant="success" style={{ width: '110px' }}>{activePlayer?.cash || ''}</Button>
-    </div>
-  </div>
-</li>
-
-<li>
-  <div className="d-flex align-items-center">
-    <div className="tooltips">
-      <div className='tooltiptext'> Buildings Owned </div>
-      <FontAwesomeIcon icon={faHouse} style={{"color": "#e10909", fontSize:"1.8em", width:'45px'}}/>&nbsp;&nbsp;
-    </div>
-    <div className="flex-grow-1">
-      <Button variant="danger" style={{ width: '110px' }}>{activePlayer?.housesOwned || 0}</Button>
-    </div>
-  </div>
-</li>
-
-<li>
-  <div className="d-flex align-items-center">
-    <div className="tooltips">
-      <div className='tooltiptext'> Properties</div>
-      <FontAwesomeIcon icon={faAddressCard} style={{fontSize:"1.8em", width:'45px'}}/>&nbsp;&nbsp;
-    </div>
-    <div className="flex-grow-1">
-      <ShowProperties/>
-    </div>
-  </div>
-</li>
-
-<li>
-  <div className="d-flex align-items-center">
-    <div className="tooltips">
-      <div className='tooltiptext'> End Your Turn</div>
-      <FontAwesomeIcon icon={faForward}style={{color: "#0255e3",fontSize:"1.8em", width:'45px'}} />&nbsp;&nbsp;
-    </div>
-    <div className="flex-grow-1">
-      <Button variant="primary" style={{ width: '110px' }} onClick={handleEndTurn}>End Turn</Button>
-    </div>
-  </div>
-</li>
-
+            <div className="d-flex align-items-center">
+              <OverlayTrigger placement="top" delay={{ show: 500, hide: 100 }} overlay={renderTooltip("End Your Turn")}>
+                <div className="tooltips">
+                  <FontAwesomeIcon icon={faForward} style={{ color: "#0255e3", fontSize: "1.8em", width: '45px' }} />&nbsp;&nbsp;
+                </div>
+              </OverlayTrigger>
+              <div className="flex-grow-1">
+                <Button variant="primary" style={{ width: '110px' }} onClick={handleEndTurn}>
+                  End Turn
+                </Button>
+              </div>
+            </div>
+          </li>
   </ul>
   <div className= "other-options">
     <ul>
@@ -120,8 +143,18 @@ function Sidebar({ activePlayer, rolledValue, handleEndTurn }) {
       <li><a href='https://www.hasbro.com/common/instruct/00009.pdf' target="_blank" rel="noreferrer">Rules</a></li>
       <li onClick={() => window.location.reload()}>Restart Game</li>
     </ul>
+    
+  </div>
   </div>
 </div>
+      ) : (
+        <div>
+          <OverlayTrigger placement="right" delay={{ show: 500, hide: 100 }} overlay={renderTooltip('expand')}>
+          <FontAwesomeIcon icon={sidebarVisible ? faChevronUp : faChevronDown} onClick={toggleSidebarVisibility} style={{ color: "#000000", fontSize: "1.8em", width: '45px' }} />
+              </OverlayTrigger>
+        </div>
+      )}
+      
 </>);
   }
   
