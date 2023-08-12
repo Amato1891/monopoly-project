@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/monopoly-project/static/css/main.4f5a0f18.css",
-    "main.js": "/monopoly-project/static/js/main.d5bf490b.js",
+    "main.css": "/monopoly-project/static/css/main.7a927cbc.css",
+    "main.js": "/monopoly-project/static/js/main.0b514b16.js",
     "static/js/787.c0bc97db.chunk.js": "/monopoly-project/static/js/787.c0bc97db.chunk.js",
     "static/media/monopoly_logo.png": "/monopoly-project/static/media/monopoly_logo.d23d37c33ba62896657f.png",
     "index.html": "/monopoly-project/index.html",
-    "main.4f5a0f18.css.map": "/monopoly-project/static/css/main.4f5a0f18.css.map",
-    "main.d5bf490b.js.map": "/monopoly-project/static/js/main.d5bf490b.js.map",
+    "main.7a927cbc.css.map": "/monopoly-project/static/css/main.7a927cbc.css.map",
+    "main.0b514b16.js.map": "/monopoly-project/static/js/main.0b514b16.js.map",
     "787.c0bc97db.chunk.js.map": "/monopoly-project/static/js/787.c0bc97db.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.4f5a0f18.css",
-    "static/js/main.d5bf490b.js"
+    "static/css/main.7a927cbc.css",
+    "static/js/main.0b514b16.js"
   ]
 }
