@@ -2,7 +2,7 @@
 This Game Board Project is purely for <strong>Educational and Non-commercial</strong> Use
 
 # board-game-project
-my re-creation of the a popular board game.
+my re-creation of the popular board game.
 <br/>
 ![Screenshot 2023-11-14 105402](https://github.com/Amato1891/monopoly-project/assets/84348911/f91f2f03-b321-440d-ad4f-a542a0113859)
 
