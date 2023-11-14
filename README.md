@@ -1,4 +1,4 @@
-❗# Important ❗
+# Important ❗❗
 This Game Board Project is purely for <strong>Educational and Non-commercial</strong> Use
 
 # board-game-project
