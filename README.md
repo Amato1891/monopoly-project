@@ -10,7 +10,7 @@ my re-creation of the a popular board game.
 I plan to add Javascript to this project to make the game playable in the near future!
 
 # Progress
-Track the project on [Jira](https://jim-amato-monopoly.atlassian.net/jira/software/projects/UI/boards/1){:target="_blank"}
+Track the project on <a href="https://jim-amato-monopoly.atlassian.net/jira/software/projects/UI/boards/1" target="_blank">Jira</a>
 ![image](https://github.com/Amato1891/monopoly-project/assets/84348911/4fc1517a-411f-4642-9069-35bd31aa77ae)
 
 
@@ -21,5 +21,4 @@ Track the project on [Jira](https://jim-amato-monopoly.atlassian.net/jira/softwa
 ![Screenshot 2023-11-14 105955](https://github.com/Amato1891/monopoly-project/assets/84348911/5b26061e-0753-45ef-99d1-5424034141e6)
 
 # Live Demo
-
-[Board Game Project](http://jimamato.com/monopoly-project/){:target="_blank"}
+<a href="http://jimamato.com/monopoly-project/" target="_blank">Board Game Project</a>
