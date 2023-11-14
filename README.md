@@ -8,9 +8,7 @@ my re-creation of the a popular board game.
 
 
 # About
-100% custom built using html & css on React framework.
-<br/>
-I plan to add Javascript to this project to make the game playable in the near future!
+Currently in development using React and styled with Bootstrap, this project aims to deliver a dynamic and interactive game board experience. Please note that it's a work in progress, and while not fully playable yet, you can explore the current features and development progress below.
 
 # Progress
 Track the project on <a href="https://jim-amato-monopoly.atlassian.net/jira/software/projects/UI/boards/1" target="_blank">Jira</a>
