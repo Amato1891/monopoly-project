@@ -23,9 +23,9 @@ Track the project on <a href="https://jim-amato-monopoly.atlassian.net/jira/soft
 ![Screenshot 2023-11-14 110432](https://github.com/Amato1891/monopoly-project/assets/84348911/8f0e8923-85a1-4460-a735-950676b730d4)
 #### Utilities
 ![Screenshot 2023-11-14 110015](https://github.com/Amato1891/monopoly-project/assets/84348911/d61dba86-cac3-48e7-9a1a-a59883021595)
-#### Rail Roads
-![Screenshot 2023-11-14 110005](https://github.com/Amato1891/monopoly-project/assets/84348911/b28a4b85-545d-4483-b6a0-d20e43f50f85)
 #### Properties
+![Screenshot 2023-11-14 110005](https://github.com/Amato1891/monopoly-project/assets/84348911/b28a4b85-545d-4483-b6a0-d20e43f50f85)
+#### Rail Roads
 ![Screenshot 2023-11-14 105955](https://github.com/Amato1891/monopoly-project/assets/84348911/5b26061e-0753-45ef-99d1-5424034141e6)
 #### Rolling Doubles Twice
 ![Screenshot 2023-11-14 121011](https://github.com/Amato1891/monopoly-project/assets/84348911/4a9a023f-a526-41d3-874e-6ab645cd5fa6)
