@@ -1,5 +1,5 @@
 # Important ❗
-This Game Board Project is purely for Educational and Non-commercial Use
+This Game Board Project is purely for <bold>Educational and Non-commercial</bold> Use
 
 # board-game-project
 my re-creation of the a popular board game.
