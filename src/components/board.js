@@ -68,9 +68,10 @@ function generateRandomId() {
   };
 
   const handleLoadPropertyDetails = (e) => {
-    let selectedProperty = propertyData.properties.find(property => property.name === e.target.textContent);
-    let selectedRailroad = selectedProperty ? console.log('property found') : railRoadData.railroads.find(railRoad => railRoad.name === e.target.textContent);
-    let selectedUtility = selectedRailroad || selectedProperty ? console.log('property/railroad found') : utilitiesData.utilities.find(utility => utility.name === e.target.textContent);
+    const textContent = e.target.children[0] ? e.target.children[0].textContent : e.target.className === 'price' ? e.target.previousSibling.textContent : e.target.textContent;
+    const selectedProperty = propertyData.properties.find(property => property.name === textContent);
+    const selectedRailroad = selectedProperty ? console.log('property found') : railRoadData.railroads.find(railRoad => railRoad.name === textContent);
+    const selectedUtility = selectedRailroad || selectedProperty ? console.log('property/railroad found') : utilitiesData.utilities.find(utility => utility.name === textContent);
     setPropertyModalShow (true);
     return setActiveProp (selectedProperty || selectedRailroad || selectedUtility);
   }
@@ -115,8 +116,8 @@ function generateRandomId() {
       const { color, price, location } = property;
   
       return (
-        <div className={`cell ${location} ${color} ${additionalClasses||''}`}>
-          <span className="prop-name" onClick={handleLoadPropertyDetails}>
+        <div className={`cell ${location} ${color} ${additionalClasses||''}`} onClick={handleLoadPropertyDetails}>
+          <span className="prop-name">
             {name}
           </span>
           <span className="price">price ${price}</span>

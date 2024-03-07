@@ -11,8 +11,8 @@ import Tooltip from 'react-bootstrap/Tooltip';
 function Sidebar({ activePlayer, rolledValue, handleEndTurn }) {
   const renderTooltip = (text) => <Tooltip>{text}</Tooltip>;
   const [sidebarVisible, setSidebarVisible] = useState(true);
+  const [propertiesOwned, setPropertiesOwned] = useState([{name: 'ventnor ave', priceToBuy: 260, priceToMortgage: 130, color: 'yellow'}]);
 
-    const [propertiesOwned, setPropertiesOwned] = useState([{name: 'ventnor ave', priceToBuy: 260, priceToMortgage: 130, color: 'yellow'}]);
     // open popover for properties
   const ShowProperties = () => (
     <OverlayTrigger trigger="click" placement="right" overlay={popover}>
@@ -43,7 +43,9 @@ function Sidebar({ activePlayer, rolledValue, handleEndTurn }) {
 
   const toggleSidebarVisibility = () => {
     sidebarVisible === true ? setSidebarVisible (false) : setSidebarVisible (true);
-  }
+    let gameBoard = document.querySelector ('.board');
+    sidebarVisible === true ? gameBoard.style.marginLeft = "0px" : gameBoard.style.marginLeft = "200px";
+  };
 
     return (<>
       {/* SIDEBAR */}
