@@ -1,7 +1,7 @@
 import '../App.css';
 import '../sidebar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDiamond} from '@fortawesome/free-solid-svg-icons';
+import { faShip, faShoePrints, faDog, faCar, faChessPawn, faMoneyBillWave, faDiamond } from '@fortawesome/free-solid-svg-icons';
 import React, { useState } from 'react';
 import {DisplayModal, PlayerDetailsModal, PropertyDetailsModal} from './modal';
 import propertyData from '../data/properties.json';
@@ -20,7 +20,6 @@ const [propertiesOwned, setPropertiesOwned] = useState([{name: 'ventnor ave', pr
 // other state managed components
 const [modalShow, setModalShow] = React.useState(true);
 const [playerDetailsModalShow, setPlayerDetailsModalShow] = React.useState(false);
-const [fullValue, setFullValue] = useState(0);
 const [numberOfPlayers, setNumberOfPlayers] = useState(0);
 const [activeProp, setActiveProp] = useState('');
 const [propertyModalShow, setPropertyModalShow] = React.useState(false);
@@ -57,7 +56,7 @@ function generateRandomId() {
   const handleModalHide = (totalPlayers) => {
     setNumberOfPlayers(totalPlayers);
     setModalShow(false);
-    if (totalPlayers > 0) {
+    if (totalPlayers < 4) {
       setPlayerDetailsModalShow(true);
     }
   };
@@ -76,33 +75,45 @@ function generateRandomId() {
     return setActiveProp (selectedProperty || selectedRailroad || selectedUtility);
   }
 
+  // set player icon to be used on board
+  const getPlayerIcon = (gamePiece) => {
+    switch (gamePiece) {
+      case 'ship':
+      return faShip;
+    case 'boot':
+      return faShoePrints;
+    case 'dog':
+      return faDog;
+    case 'car':
+      return faCar;
+    case 'thimble':
+      return faChessPawn;
+    case 'moneybag':
+      return faMoneyBillWave;
+    }
+  };
+
 
   // hide the player details modal
-  const handlePlayerDetailsModalHide = (name, gamePiece) => {
+  const handlePlayerDetailsModalHide = (name, gamePiece, hidePlayerAdditionModal) => {
     const playerObj = {
       playerId: generateRandomId(),
       position: 0,
-      name: name,
-      gamePiece: gamePiece,
-      cash:2000,
-      propertiesOwned:[],
-      housesOwned: 0
+      name,
+      gamePiece,
+      cash: 2000,
+      propertiesOwned,
+      housesOwned: 0,
+      icon: getPlayerIcon(gamePiece)
     };
-    if (true === false) {
-      setPropertiesOwned('placeholder')
-    }
-    // dont add malformed date to players state obj
+    // Add player only if both name and gamePiece are provided
     if (playerObj.name && playerObj.gamePiece) {
-    setPlayers([...players, playerObj]);
-    };
-    if (players.length + 1 <= numberOfPlayers) {
-      setPlayerDetailsModalShow(true);
-    } else {
-      setPlayerDetailsModalShow(false);
+      setPlayers([...players, playerObj]);
     }
+    // Set player details modal visibility based on hidePlayerAdditionModal flag
+    setPlayerDetailsModalShow(!hidePlayerAdditionModal);
+    // Set active player to the first player in the list
     setActivePlayer(players[0]);
-    // show the dice so player can roll
-    // document.getElementsByClassName('dice-btn')[0].classList.remove('hidden');
   };
 
 
@@ -126,8 +137,13 @@ function generateRandomId() {
     }
   };
   
-  const SpecialCell = ({ specialCellName, location, additionalClasses }) => (
-    <div className={`${specialCellName} ${location} ${additionalClasses || ''}`}></div>
+  const SpecialCell = ({ specialCellName, location, additionalClasses, players }) => (
+    <div className={`${specialCellName} ${location} ${additionalClasses || ''}`}>
+      
+      {/* {players.map((player, index) => (
+        // <FontAwesomeIcon key={index} icon={getPlayerIcon(player.gamePiece)} title={player.name} size='xl' color='gray' />
+      ))} */}
+    </div>
   );
   
   const IncomeTaxCell = () => (
@@ -146,6 +162,7 @@ function generateRandomId() {
    <div><DisplayModal
       show={modalShow}
       onHide={handleModalHide}
+      playerstotal={players.length}
     />
     <PlayerDetailsModal
     show={playerDetailsModalShow}
@@ -168,7 +185,7 @@ function generateRandomId() {
     <DiceRoller onRoll={handleRoll} resetDice={resetDice}></DiceRoller>
     </div>
       <div className="center-logo">
-        <div className ="center-logo-image spin">
+        <div className ="center-logo-image">
         </div>
         </div>
       <div className="background-theme"></div>
@@ -187,6 +204,7 @@ function generateRandomId() {
     specialCellName = "visiting-jail"
     location = "cell-left"
     additionalClasses = "cell-bottom"
+    players = {players}
     />
     <PropertyCell
       name="Connecticut Avenue"
@@ -198,6 +216,7 @@ function generateRandomId() {
     specialCellName = "chance"
     location = "cell-bottom"
     additionalClasses = "cell"
+    players = {players}
     />
     <PropertyCell
       name="Oriental Avenue"
@@ -213,6 +232,7 @@ function generateRandomId() {
     specialCellName = "community-chest"
     location = "cell-bottom"
     additionalClasses = "cell"
+    players = {players}
     />
     <PropertyCell
       name="Mediterranean Avenue"
@@ -221,6 +241,7 @@ function generateRandomId() {
     specialCellName = "go"
     location = "cell-bottom"
     additionalClasses = "cell"
+    players = {players}
     />
     <PropertyCell
       name="St. Charles Place"
@@ -250,6 +271,7 @@ function generateRandomId() {
     specialCellName = "community-chest"
     location = "cell-left"
     additionalClasses = "cell community-chest-left"
+    players = {players}
     />
     <PropertyCell
       name="Tennessee Avenue"
@@ -263,6 +285,7 @@ function generateRandomId() {
     specialCellName = "Free Parking"
     location = "cell-left"
     additionalClasses = "free-parking"
+    players = {players}
     />
     <PropertyCell
       name="Kentucky Avenue"
@@ -271,6 +294,7 @@ function generateRandomId() {
     specialCellName = "chance"
     location = "cell-top"
     additionalClasses = "cell"
+    players = {players}
     />
     <PropertyCell
       name="Indiana Avenue"
@@ -298,6 +322,7 @@ function generateRandomId() {
     specialCellName = "Go To Jail"
     location = "cell-top"
     additionalClasses = "go-to-jail"
+    players = {players}
     />
     <PropertyCell
       name="Pacific Avenue"
@@ -309,6 +334,7 @@ function generateRandomId() {
     specialCellName = "community-chest"
     location = "cell-right"
     additionalClasses = "cell community-chest"
+    players = {players}
     />
     <PropertyCell
       name="Pennsylvania Avenue"
@@ -320,6 +346,7 @@ function generateRandomId() {
     specialCellName = "chance"
     location = "cell-right"
     additionalClasses = "cell"
+    players = {players}
     />
     <PropertyCell
       name="Park Place"
@@ -328,6 +355,7 @@ function generateRandomId() {
     specialCellName = "Luxury Tax"
     location = "cell-right"
     additionalClasses = "luxury-tax"
+    players = {players}
     />
     <PropertyCell
       name="Boardwalk"

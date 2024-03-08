@@ -7,11 +7,12 @@ import { faLightbulb as farLightbulb } from '@fortawesome/free-regular-svg-icons
 import { faFaucet } from '@fortawesome/free-solid-svg-icons';
 const rmWhitespace = /\s/g;
 
+
 export function DisplayModal(props) {
     const handleButtonClick = (buttonNumber) => {
       props.onHide(buttonNumber);
     };
-  
+
     return (
       <Modal
         {...props}
@@ -33,12 +34,13 @@ export function DisplayModal(props) {
           </p>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={() => handleButtonClick(2)}>Next</Button>&nbsp;&nbsp;
+          <Button onClick={() => handleButtonClick(props.playerstotal)}>Next</Button>&nbsp;&nbsp;
         </Modal.Footer>
       </Modal>
     );
   }
 
+  // modal that appears on launch to set player names and pieces
   export function PlayerDetailsModal(props) {
 
     const [numberOfPlayers, setNumberOfPlayers] = useState(0);
@@ -46,6 +48,9 @@ export function DisplayModal(props) {
     const [name, setName] = useState('');
     const [shouldRenderButton, setShouldRenderButton] = useState(false);
     const [showCharSelectModal, setShowCharSelectModal] = useState(true);
+    const [availablePieces, setAvailablePieces] = useState([
+      'ship', 'boot', 'dog', 'car', 'thimble', 'moneybag'
+    ]);
     
     const addAdditionalPlayers = () => {
       setShowCharSelectModal (true);
@@ -53,26 +58,25 @@ export function DisplayModal(props) {
   
     // submit button on player detail modal
     const handleFormSubmit = (e) => {
-        e.preventDefault(); // prevent the form from submitting and refreshing the page
-        for (let i = 0; i < 2; i++) {
-          if (!name || name.length < 2) return;
-          if (!gamePiece || gamePiece === 'Select Your Playing Piece') return;
-          props.onHide(name, gamePiece);
-          // hide whichever gamepieces have been selected
-          document.getElementsByClassName(gamePiece)[0].classList.add('hidden');
-          setName('');
-          setGamePiece('');
-          numberOfPlayers+1 >= 2 ? setShouldRenderButton (true) : setShouldRenderButton (false);
-          numberOfPlayers+1 >= 2 ? setShowCharSelectModal (false) : setShowCharSelectModal (true)
-        }
-        setNumberOfPlayers(numberOfPlayers+1);
-      };
+      e.preventDefault();
+      if (!name || name.length < 2 || !gamePiece || gamePiece === 'Select Your Playing Piece') return;
+      props.onHide(name, gamePiece);
+      setAvailablePieces(prev => prev.filter(piece => piece !== gamePiece));
+      setName('');
+      setGamePiece('');
+      const shouldRender = numberOfPlayers+1 >= 2;
+      setShouldRenderButton(shouldRender);
+      setShowCharSelectModal(!shouldRender);
+      setNumberOfPlayers(prev => prev + 1);
+      // only allow a maximum of 4 players
+      if (numberOfPlayers+1 === 4) return props.onHide(null, null, true);
+    };
 
       // done button on player detail modal
       const handleFormDone = (e) => {
-        e.preventDefault(); // prevent the form from submitting and refreshing the page
+        e.preventDefault();
         if (numberOfPlayers < 2) return;
-       props.onHide();
+        props.onHide(null, null, true);
       };
     return (
       <Modal
@@ -103,7 +107,7 @@ export function DisplayModal(props) {
               type="name"
               placeholder="Enter name"
               onChange={(e) => setName(e.target.value)}
-              value={name} // set the value of the input field to the name state
+              value={name}
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicCheckbox">
@@ -111,13 +115,12 @@ export function DisplayModal(props) {
             <Form.Select
               aria-label="Default select example"
               onChange={(e) => setGamePiece(e.target.value)}
-              value={gamePiece} // set the value of the select field to the gamePiece state
+              value={gamePiece}
             >
               <option>Select Your Playing Piece</option>
-              <option className = "ship" value="ship">Ship</option>
-              <option className = "boot" value="boot">Boot</option>
-              <option className = "dog" value="dog">Dog</option>
-              <option className = "car" value="car">Car</option>
+        {availablePieces.map(piece => (
+          <option key={piece} value={piece}>{piece.charAt(0).toUpperCase() + piece.slice(1)}</option>
+        ))}
             </Form.Select>
           </Form.Group>
           <Modal.Footer>
