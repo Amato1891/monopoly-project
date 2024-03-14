@@ -1,172 +1,44 @@
 {
   "spaces": [
-    {
-      "type": "visiting-jail",
-      "className": "cell-bottom visiting-jail cell-left"
-    },
-    {
-      "type": "property",
-      "color": "light-blue",
-      "name": "Connecticut Avenue",
-      "location": "cell-bottom",
-      "price": 120
-    },
-    {
-      "type": "property",
-      "color": "light-blue",
-      "name": "Vermont Avenue",
-      "location": "cell-bottom",
-      "price": 100
-    },
-    { "type": "chance", "className": "cell-bottom chance", "location": "cell-bottom" },
-    {
-      "type": "property",
-      "color": "light-blue",
-      "name": "Oriental Avenue",
-      "location": "cell-bottom",
-      "price": 100
-    },
-    { "type": "rail-road", "name": "Reading Railroad", "color": "rail-road", "price": 200, "location": "cell-bottom" },
-    {
-      "type": "income-tax",
-      "className": "cell-bottom",
-      "text": "Income Tax",
-      "icon": "faDiamond",
-      "details": "Pay 10% or $200"
-    },
-    {
-      "type": "property",
-      "color": "brown",
-      "name": "Baltic Avenue",
-      "location": "cell-bottom",
-      "price": 60
-    },
-    { "type": "community-chest", "className": "cell-bottom community-chest", "location": "cell-bottom" },
-    {
-      "type": "property",
-      "color": "brown",
-      "name": "Mediterranean Avenue",
-      "location": "cell-bottom",
-      "price": 60
-    },
-    { "type": "go", "location": "cell-bottom" },
-    {
-      "type": "property",
-      "color": "purple",
-      "name": "St. Charles Place",
-      "location": "cell-left",
-      "price": 140
-    },
-    { "type": "utilities", "name": "Electric Company", "price": 150, "color": "electric", "location": "cell-left" },
-    {
-      "type": "property",
-      "color": "purple",
-      "name": "States Avenue",
-      "location": "cell-left",
-      "price": 140
-    },
-    {
-      "type": "property",
-      "color": "purple",
-      "name": "Virginia Avenue",
-      "location": "cell-left",
-      "price": 160
-    },
-    { "type": "rail-road", "name": "Pennsylvania Railroad",  "color": "rail-road", "location": "cell-left", "price": 200 },
-    {
-      "type": "property",
-      "color": "orange",
-      "name": "St. James Place",
-      "price": 180
-    },
-    { "type": "community-chest", "className": "community-chest", "location": "cell-left" },
-    {
-      "type": "property",
-      "color": "orange",
-      "name": "Tennessee Avenue",
-      "location": "cell-left",
-      "price": 180
-    },
-    {
-      "type": "property",
-      "color": "orange",
-      "name": "New York Avenue",
-      "location": "cell-left",
-      "price": 200
-    },
-    { "type": "free-parking", "className": "free-parking", "location": "cell-left" },
-    {
-      "type": "property",
-      "color": "red",
-      "name": "Kentucky Avenue",
-      "location": "cell-top",
-      "price": 220
-    },
-    { "type": "chance", "className": "cell-top chance", "location": "cell-top" },
-    {
-      "type": "property",
-      "color": "red",
-      "name": "Indiana Avenue",
-      "location": "cell-top",
-      "price": 220
-    },
-    {
-      "type": "property",
-      "color": "red",
-      "name": "Illinois Avenue",
-      "location": "cell-top",
-      "price": 240
-    },
-    { "type": "rail-road", "name": "B. & O. Railroad",  "color": "rail-road", "location": "cell-top", "price": 200 },
-    {
-      "type": "property",
-      "color": "yellow",
-      "name": "Atlantic Avenue",
-      "location": "cell-top",
-      "price": 260
-    },
-    {
-      "type": "property",
-      "color": "yellow",
-      "name": "Ventnor Avenue",
-      "location": "cell-top",
-      "price": 260
-    },
-    { "type": "utilities", "name": "Water Works", "price": 150, "location": "cell-top"},
-    {
-      "type": "property",
-      "color": "yellow",
-      "name": "Marvin Gardens",
-      "location": "cell-top",
-      "price": 280
-    },
-    { "type": "go-to-jail", "className": "cell-top go-to-jail", "location": "cell-top" },
-    {
-      "type": "property",
-      "color": "green",
-      "name": "Pacific Avenue",
-      "location": "cell-right",
-      "price": 300
-    },
-    {
-      "type": "property",
-      "color": "green",
-      "name": "North Carolina Avenue",
-      "location": "cell-right",
-      "price": 300
-    },
-    { "type": "community-chest", "className": "cell-right community-chest", "location": "cell-right" },
-    {
-      "type": "property",
-      "color": "green",
-      "name": "Pennsylvania Avenue",
-      "location": "cell-right",
-      "price": 320
-    },
-    { "type": "rail-road", "name": "Short Line Railroad",  "color": "rail-road", "location": "cell-right", "price": 200 },
-    { "type": "chance", "className": "cell-right chance", "location": "cell-right" },
-    { "type": "property", "color": "dark-blue", "name": "Park Place", "price": 350, "location": "cell-right" },
-    { "type": "luxury-tax", "className": "luxury-tax", "location": "cell-right" },
-    { "type": "property", "color": "dark-blue", "name": "Boardwalk", "price": 400, "location": "cell-right" }
+    { "type": "go", "location": "cell-bottom", "position": 0 },
+    { "type": "property", "color": "brown", "name": "Mediterranean Avenue", "location": "cell-bottom", "price": 60, "position": 1 },
+    { "type": "community-chest", "className": "cell-bottom community-chest", "location": "cell-bottom", "position": 2 },
+    { "type": "property", "color": "brown", "name": "Baltic Avenue", "location": "cell-bottom", "price": 60, "position": 3 },
+    { "type": "income-tax", "className": "cell-bottom", "text": "Income Tax", "icon": "faDiamond", "details": "Pay 10% or $200", "position": 4 },
+    { "type": "rail-road", "name": "Reading Railroad", "color": "rail-road", "price": 200, "location": "cell-bottom", "position": 5 },
+    { "type": "property", "color": "light-blue", "name": "Oriental Avenue", "location": "cell-bottom", "price": 100, "position": 6 },
+    { "type": "chance", "className": "cell-bottom chance", "location": "cell-bottom", "position": 7 },
+    { "type": "property", "color": "light-blue", "name": "Vermont Avenue", "location": "cell-bottom", "price": 100, "position": 8 },
+    { "type": "property", "color": "light-blue", "name": "Connecticut Avenue", "location": "cell-bottom", "price": 120, "position": 9 },
+    { "type": "visiting-jail", "className": "cell-bottom visiting-jail cell-left", "position": 10 },
+    { "type": "property", "color": "purple", "name": "St. Charles Place", "location": "cell-left", "price": 140, "position": 11 },
+    { "type": "utilities", "name": "Electric Company", "price": 150, "color": "electric", "location": "cell-left", "position": 12 },
+    { "type": "property", "color": "purple", "name": "States Avenue", "location": "cell-left", "price": 140, "position": 13 },
+    { "type": "property", "color": "purple", "name": "Virginia Avenue", "location": "cell-left", "price": 160, "position": 14 },
+    { "type": "rail-road", "name": "Pennsylvania Railroad", "color": "rail-road", "location": "cell-left", "price": 200, "position": 15 },
+    { "type": "property", "color": "orange", "name": "St. James Place", "price": 180, "position": 16 },
+    { "type": "community-chest", "className": "community-chest", "location": "cell-left", "position": 17 },
+    { "type": "property", "color": "orange", "name": "Tennessee Avenue", "location": "cell-left", "price": 180, "position": 18 },
+    { "type": "property", "color": "orange", "name": "New York Avenue", "location": "cell-left", "price": 200, "position": 19 },
+    { "type": "free-parking", "className": "free-parking", "location": "cell-left", "position": 20 },
+    { "type": "property", "color": "red", "name": "Kentucky Avenue", "location": "cell-top", "price": 220, "position": 21 },
+    { "type": "chance", "className": "cell-top chance", "location": "cell-top", "position": 22 },
+    { "type": "property", "color": "red", "name": "Indiana Avenue", "location": "cell-top", "price": 220, "position": 23 },
+    { "type": "property", "color": "red", "name": "Illinois Avenue", "location": "cell-top", "price": 240, "position": 24 },
+    { "type": "rail-road", "name": "B. & O. Railroad", "color": "rail-road", "location": "cell-top", "price": 200, "position": 25 },
+    { "type": "property", "color": "yellow", "name": "Atlantic Avenue", "location": "cell-top", "price": 260, "position": 26 },
+    { "type": "property", "color": "yellow", "name": "Ventnor Avenue", "location": "cell-top", "price": 260, "position": 27 },
+    { "type": "utilities", "name": "Water Works", "price": 150, "location": "cell-top", "position": 28 },
+    { "type": "property", "color": "yellow", "name": "Marvin Gardens", "location": "cell-top", "price": 280, "position": 29 },
+    { "type": "go-to-jail", "className": "cell-top go-to-jail", "location": "cell-top", "position": 30 },
+    { "type": "property", "color": "green", "name": "Pacific Avenue", "location": "cell-right", "price": 300, "position": 31 },
+    { "type": "property", "color": "green", "name": "North Carolina Avenue", "location": "cell-right", "price": 300, "position": 32 },
+    { "type": "community-chest", "className": "cell-right community-chest", "location": "cell-right", "position": 33 },
+    { "type": "property", "color": "green", "name": "Pennsylvania Avenue", "location": "cell-right", "price": 320, "position": 34 },
+    { "type": "rail-road", "name": "Short Line Railroad", "color": "rail-road", "location": "cell-right", "price": 200, "position": 35 },
+    { "type": "chance", "className": "cell-right chance", "location": "cell-right", "position": 36 },
+    { "type": "property", "color": "dark-blue", "name": "Park Place", "price": 350, "location": "cell-right", "position": 37 },
+    { "type": "luxury-tax", "className": "luxury-tax", "location": "cell-right", "position": 38 },
+    { "type": "property", "color": "dark-blue", "name": "Boardwalk", "price": 400, "location": "cell-right", "position": 39 }
   ]
 }

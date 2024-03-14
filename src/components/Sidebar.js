@@ -8,7 +8,7 @@ import Popover from 'react-bootstrap/Popover';
 import Tooltip from 'react-bootstrap/Tooltip';
 
 
-function Sidebar({ activePlayer, rolledValue, handleEndTurn }) {
+function Sidebar({ activePlayer, rolledValue, handleEndTurn, rolledDoubles}) {
   const renderTooltip = (text) => <Tooltip>{text}</Tooltip>;
   const [sidebarVisible, setSidebarVisible] = useState(true);
   const [propertiesOwned, setPropertiesOwned] = useState([{name: 'ventnor ave', priceToBuy: 260, priceToMortgage: 130, color: 'yellow'}]);
@@ -132,7 +132,7 @@ function Sidebar({ activePlayer, rolledValue, handleEndTurn }) {
                 </div>
               </OverlayTrigger>
               <div className="flex-grow-1">
-                <Button variant="primary" style={{ width: '110px' }} onClick={handleEndTurn}>
+                <Button disabled={!rolledValue || rolledDoubles} variant="primary" style={{ width: '110px' }} onClick={handleEndTurn}>
                   End Turn
                 </Button>
               </div>

@@ -1,7 +1,7 @@
 import '../App.css';
 import '../sidebar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShip, faShoePrints, faDog, faCar, faChessPawn, faMoneyBillWave, faDiamond } from '@fortawesome/free-solid-svg-icons';
+import {faDiamond } from '@fortawesome/free-solid-svg-icons';
 import React, { useState } from 'react';
 import {DisplayModal, PlayerDetailsModal, PropertyDetailsModal} from './modal';
 import propertyData from '../data/properties.json';
@@ -10,10 +10,11 @@ import utilitiesData from '../data/utilities.json';
 import spacesData from '../data/spaces.json';
 import Sidebar from './Sidebar';
 import DiceRoller from './DiceRoller';
+import {gamePieceHelper} from '../utilities/gamePieceHelper';
 
 function Board() {
 
-  // set state of key gameboard elements
+// set state of key gameboard elements
 const [players, setPlayers] = useState([]);
 const [activePlayer, setActivePlayer] = useState('');
 const [propertiesOwned, setPropertiesOwned] = useState([{name: 'ventnor ave', priceToBuy: 260, priceToMortgage: 130, color: 'yellow'}]);
@@ -25,6 +26,12 @@ const [activeProp, setActiveProp] = useState('');
 const [propertyModalShow, setPropertyModalShow] = React.useState(false);
 const [rolledValue, setRolledValue] = useState(null);
 const [resetDice, setResetDice] = useState(false);
+const [rolledDoubles, setRolledDoubles] = useState(false);
+
+  // Function to handle the rolledDoubles value from DiceRoller
+  const checkDoublesRoll = (value) => {
+    setRolledDoubles(value);
+  };
 
 // generate id for players
 function generateRandomId() {
@@ -50,6 +57,12 @@ function generateRandomId() {
   const handleRoll = (value) => {
     setResetDice(false);
     setRolledValue(value);
+    // calculate new position
+    const newPosition = activePlayer.position + value;
+    // Check if the player's new position exceeds 39
+    const adjustedPosition = newPosition % 40;
+    // Update the player's position
+    activePlayer.position = adjustedPosition;
   };
 
   // hide the player selection modal
@@ -67,6 +80,8 @@ function generateRandomId() {
   };
 
   const handleLoadPropertyDetails = (e) => {
+    // if clicked directly onto the gamepiece return out of fn or it will break.
+    if (e.target.localName === 'img')return;
     const textContent = e.target.children[0] ? e.target.children[0].textContent : e.target.className === 'price' ? e.target.previousSibling.textContent : e.target.textContent;
     const selectedProperty = propertyData.properties.find(property => property.name === textContent);
     const selectedRailroad = selectedProperty ? console.log('property found') : railRoadData.railroads.find(railRoad => railRoad.name === textContent);
@@ -74,25 +89,6 @@ function generateRandomId() {
     setPropertyModalShow (true);
     return setActiveProp (selectedProperty || selectedRailroad || selectedUtility);
   }
-
-  // set player icon to be used on board
-  const getPlayerIcon = (gamePiece) => {
-    switch (gamePiece) {
-      case 'ship':
-      return faShip;
-    case 'boot':
-      return faShoePrints;
-    case 'dog':
-      return faDog;
-    case 'car':
-      return faCar;
-    case 'thimble':
-      return faChessPawn;
-    case 'moneybag':
-      return faMoneyBillWave;
-    }
-  };
-
 
   // hide the player details modal
   const handlePlayerDetailsModalHide = (name, gamePiece, hidePlayerAdditionModal) => {
@@ -104,7 +100,7 @@ function generateRandomId() {
       cash: 2000,
       propertiesOwned,
       housesOwned: 0,
-      icon: getPlayerIcon(gamePiece)
+      icon: gamePieceHelper(gamePiece)
     };
     // Add player only if both name and gamePiece are provided
     if (playerObj.name && playerObj.gamePiece) {
@@ -116,47 +112,118 @@ function generateRandomId() {
     setActivePlayer(players[0]);
   };
 
-
-
-  const PropertyCell = ({ name, additionalClasses }) => {
+  const PropertyCell = ({ name, additionalClasses, players }) => {
     // Find the object in the JSON data that matches the provided name
-    const property = spacesData.spaces.find(space => (space.type === 'property' || space.type === 'rail-road' || space.type === 'utilities') && space.name === name);
+    const property = spacesData.spaces.find(
+      (space) =>
+        (space.type === 'property' ||
+          space.type === 'rail-road' ||
+          space.type === 'utilities') &&
+        space.name === name
+    );
   
     // If a matching property is found, extract relevant properties
     if (property) {
-      const { color, price, location } = property;
-  
+      const { color, price, location, position } = property;
       return (
-        <div className={`cell ${location} ${color} ${additionalClasses||''}`} onClick={handleLoadPropertyDetails}>
-          <span className="prop-name">
-            {name}
-          </span>
+        <div
+          className={`cell ${location} ${color} ${additionalClasses || ''}`}
+          onClick={handleLoadPropertyDetails}
+        >
+          <span className="prop-name">{name}</span>
           <span className="price">price ${price}</span>
+          {/* Render game piece icon only if player is on this cell */}
+          {players &&
+            players.map((player, index) => {
+              if (player.position === position) {
+                return (
+                  <div key={index} style={{ display: 'inline-block', margin: '5px' }}>
+                    <img
+                      id={index}
+                      className="player-icon"
+                      src={gamePieceHelper(player.gamePiece)}
+                      alt={`Player ${index}`}
+                      style={{ top: `${(index + 1) * 25}px`, left: `${(index + 1) * 20}px` }}
+                    />
+                  </div>
+                );
+              }
+              return null;
+            })}
         </div>
       );
+    } else {
+      return null;
     }
   };
   
-  const SpecialCell = ({ specialCellName, location, additionalClasses, players }) => (
-    <div className={`${specialCellName} ${location} ${additionalClasses || ''}`}>
-      
-      {/* {players.map((player, index) => (
-        // <FontAwesomeIcon key={index} icon={getPlayerIcon(player.gamePiece)} title={player.name} size='xl' color='gray' />
-      ))} */}
-    </div>
-  );
+  const SpecialCell = ({ specialCellName, location, additionalClasses, players }) => {
+    // Find the object in the JSON data that matches the provided name
+    const property = spacesData.spaces.find(
+      (space) =>
+        (space.type === specialCellName ));
+
+    return (
+      <div className={`${specialCellName} ${location} ${additionalClasses || ''}`}>
+        {/* Render game piece icon only if player is on this cell */}
+        {players &&
+          players.map((player, index) => {
+            if (property && (player.position === property.position)) {
+              return (
+                <div key={index} style={{ display: 'inline-block', margin: '5px' }}>
+                  <img
+                    id={index}
+                    className="player-icon"
+                    src={gamePieceHelper(player.gamePiece)}
+                    alt={`Player ${index}`}
+                    style={{ top: `${(index + 1) * 25}px`, left: `${(index + 1) * 20}px` }}
+                  />
+                </div>
+              );
+            }
+            return null;
+          })}
+      </div>
+    );
+  };
   
-  const IncomeTaxCell = () => (
-    <div className="cell cell-bottom">
-      <span className="income-tax">
-        Income Tax <br />
-        <FontAwesomeIcon icon={faDiamond} />
-        <span className="income-tax-details">
-          <br />Pay 10% <br /> or <br /> $200
+  const IncomeTaxCell = ({ players }) => {
+    // Find the object in the JSON data that matches the provided name
+    const property = spacesData.spaces.find(
+      (space) => space.type === 'income-tax'
+    );
+  
+    return (
+      <div className="cell cell-bottom">
+        <span className="income-tax">
+          Income Tax <br />
+          <FontAwesomeIcon icon={faDiamond} />
+          <span className="income-tax-details">
+            <br />Pay 10% <br /> or <br /> $200
+          </span>
         </span>
-      </span>
-    </div>
-  );
+        {/* Render game piece icons */}
+        {players.map((player, index) => {
+          if (property && player.position === property.position) {
+            return (
+              <div key={index} style={{ display: 'inline-block', margin: '5px' }}>
+                <img
+                  id={index}
+                  className="player-icon"
+                  src={gamePieceHelper(player.gamePiece)}
+                  alt={`Player ${index}`}
+                  style={{ top: `${(index + 1) * 25}px`, left: `${(index + 1) * 20}px` }}
+                />
+              </div>
+            );
+          }
+          return null;
+        })}
+      </div>
+    );
+  };
+  
+  
 
   return (
    <div><DisplayModal
@@ -175,14 +242,14 @@ function generateRandomId() {
     />
     {/* SIDBAR */}
 <div className="app">
-      <Sidebar activePlayer={activePlayer} rolledValue={rolledValue} handleEndTurn={handleEndTurn} />
+      <Sidebar activePlayer={activePlayer} rolledValue={rolledValue} handleEndTurn={handleEndTurn} rolledDoubles={rolledDoubles} />
     </div>
 {/* GAMEBOARD */}
 <div className="main-content">
 </div>
     <div className="board">
     <div className="dice-container">
-    <DiceRoller onRoll={handleRoll} resetDice={resetDice}></DiceRoller>
+    <DiceRoller onRoll={handleRoll} checkDoubles={checkDoublesRoll} resetDice={resetDice}></DiceRoller>
     </div>
       <div className="center-logo">
         <div className ="center-logo-image">
@@ -208,9 +275,11 @@ function generateRandomId() {
     />
     <PropertyCell
       name="Connecticut Avenue"
+      players = {players}
     />
     <PropertyCell
       name="Vermont Avenue"
+      players = {players}
     />
     <SpecialCell
     specialCellName = "chance"
@@ -220,13 +289,18 @@ function generateRandomId() {
     />
     <PropertyCell
       name="Oriental Avenue"
+      players = {players}
     />
     <PropertyCell
-      name="Reading Railroad" 
+      name="Reading Railroad"
+      players = {players}
     />
-    <IncomeTaxCell />
+    <IncomeTaxCell
+    players = {players}
+     />
     <PropertyCell
       name="Baltic Avenue"
+      players = {players}
     />
     <SpecialCell
     specialCellName = "community-chest"
@@ -236,6 +310,7 @@ function generateRandomId() {
     />
     <PropertyCell
       name="Mediterranean Avenue"
+      players = {players}
     />
     <SpecialCell
     specialCellName = "go"
@@ -246,26 +321,32 @@ function generateRandomId() {
     <PropertyCell
       name="St. Charles Place"
       additionalClasses = "st-charles"
+      players = {players}
     />
    <PropertyCell
       name="Electric Company"
       additionalClasses = "electric-company"
+      players = {players}
     />
     <PropertyCell
       name="States Avenue"
       additionalClasses = "states-ave"
+      players = {players}
     />
     <PropertyCell
       name="Virginia Avenue"
       additionalClasses = "virginia-ave"
+      players = {players}
     />
     <PropertyCell
       name="Pennsylvania Railroad"
       additionalClasses = "penn-rr"
+      players = {players}
     />
     <PropertyCell
       name="St. James Place"
       additionalClasses = "st-james"
+      players = {players}
     />
     <SpecialCell
     specialCellName = "community-chest"
@@ -276,10 +357,12 @@ function generateRandomId() {
     <PropertyCell
       name="Tennessee Avenue"
       additionalClasses = "tennessee-ave"
+      players = {players}
     />
     <PropertyCell
       name="New York Avenue"
       additionalClasses = "new-york-ave"
+      players = {players}
     />
     <SpecialCell
     specialCellName = "Free Parking"
@@ -289,6 +372,7 @@ function generateRandomId() {
     />
     <PropertyCell
       name="Kentucky Avenue"
+      players = {players}
     />
     <SpecialCell
     specialCellName = "chance"
@@ -298,25 +382,32 @@ function generateRandomId() {
     />
     <PropertyCell
       name="Indiana Avenue"
+      players = {players}
     />
     <PropertyCell
       name="Illinois Avenue"
+      players = {players}
     />
     <PropertyCell
       name="B. & O. Railroad"
+      players = {players}
     />
     <PropertyCell
       name="Atlantic Avenue"
+      players = {players}
     />
     <PropertyCell
       name="Ventnor Avenue"
+      players = {players}
     />
     <PropertyCell
       name="Water Works"
       additionalClasses = "water-works"
+      players = {players}
     />
     <PropertyCell
       name="Marvin Gardens"
+      players = {players}
     />
     <SpecialCell
     specialCellName = "Go To Jail"
@@ -326,9 +417,11 @@ function generateRandomId() {
     />
     <PropertyCell
       name="Pacific Avenue"
+      players = {players}
     />
     <PropertyCell
       name="North Carolina Avenue"
+      players = {players}
     />
     <SpecialCell
     specialCellName = "community-chest"
@@ -338,9 +431,11 @@ function generateRandomId() {
     />
     <PropertyCell
       name="Pennsylvania Avenue"
+      players = {players}
     />
     <PropertyCell
       name="Short Line Railroad"
+      players = {players}
     />
     <SpecialCell
     specialCellName = "chance"
@@ -350,6 +445,7 @@ function generateRandomId() {
     />
     <PropertyCell
       name="Park Place"
+      players = {players}
     />
     <SpecialCell
     specialCellName = "Luxury Tax"
@@ -359,6 +455,7 @@ function generateRandomId() {
     />
     <PropertyCell
       name="Boardwalk"
+      players = {players}
     />
 	</div>
   </div>

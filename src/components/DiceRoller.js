@@ -5,7 +5,7 @@ import '../dice.css';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 
-const DiceRoller = ({onRoll, resetDice}) => {
+const DiceRoller = ({onRoll, resetDice, checkDoubles}) => {
   const [diceValues, setDiceValues] = useState([1, 1]);
   const [hideBtn, setHideBtn] = useState(false);
   const [rolledDoubles, setRolledDoubles] = useState(false);
@@ -20,6 +20,7 @@ const DiceRoller = ({onRoll, resetDice}) => {
         setHideBtn (true);
         setRolledDoublesTwice (false);
         setRolledDoubles (false);
+        checkDoubles(false)
         throw new Error('YOU ARE GOING TO JAIL BUDDY')
         // TODO
         // add logic to throw player in jail for rolling doubles 3x that is more forgiving then crashing the program
@@ -27,13 +28,16 @@ const DiceRoller = ({onRoll, resetDice}) => {
         setHideBtn (false);
         setRolledDoublesTwice (true);
         setRolledDoubles (false);
+        checkDoubles(true)
     } else if (newDiceValues[0] === newDiceValues[1]) {
         setHideBtn (false);
         setRolledDoubles (true);
+        checkDoubles(true)
     } else {
         setHideBtn (true);
         setRolledDoubles (false);
         setRolledDoublesTwice (false);
+        checkDoubles(false)
     } 
   };
 

@@ -44,6 +44,15 @@
   flex-direction: column;
   background-color: rgb(245, 245, 245);
   font-family: 'BioRhyme', serif;
+  position: relative;
+}
+
+.player-icon {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 1))
 }
 
 .cell:active {
@@ -210,6 +219,7 @@
 .luxury-tax {
   background-image: url('../src/images/luxury_tax_81x81.jpg');
   background-size: cover;
+  overflow: hidden;
 }
 
 .rr-and-utilities-name {
