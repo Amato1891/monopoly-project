@@ -63,6 +63,7 @@ function generateRandomId() {
     const adjustedPosition = newPosition % 40;
     // Update the player's position
     activePlayer.position = adjustedPosition;
+    
   };
 
   // hide the player selection modal
@@ -124,6 +125,7 @@ function generateRandomId() {
   
     // If a matching property is found, extract relevant properties
     if (property) {
+      
       const { color, price, location, position } = property;
       return (
         <div
@@ -136,6 +138,7 @@ function generateRandomId() {
           {players &&
             players.map((player, index) => {
               if (player.position === position) {
+                // {console.log(`${player.name}'s CURRENT POSITION ${player.position}. PROPERTY NAME ${name}`)}
                 return (
                   <div key={index} style={{ display: 'inline-block', margin: '5px' }}>
                     <img
@@ -148,6 +151,8 @@ function generateRandomId() {
                   </div>
                 );
               }
+              // console.log(`PROPERTY: ${JSON.stringify(property)}`)
+              // console.log(`THE ${player.gamePiece} is at position ${player.position} and the prop position is ${position}`)
               return null;
             })}
         </div>
@@ -157,18 +162,18 @@ function generateRandomId() {
     }
   };
   
-  const SpecialCell = ({ specialCellName, location, additionalClasses, players }) => {
+  const SpecialCell = ({ specialCellName, location, additionalClasses, players, position }) => {
     // Find the object in the JSON data that matches the provided name
     const property = spacesData.spaces.find(
       (space) =>
-        (space.type === specialCellName ));
-
+        (space.position === position ));
+console.log(property)
     return (
       <div className={`${specialCellName} ${location} ${additionalClasses || ''}`}>
         {/* Render game piece icon only if player is on this cell */}
         {players &&
           players.map((player, index) => {
-            if (property && (player.position === property.position)) {
+            if (property && (player.position == property.position)) {
               return (
                 <div key={index} style={{ display: 'inline-block', margin: '5px' }}>
                   <img
@@ -187,10 +192,10 @@ function generateRandomId() {
     );
   };
   
-  const IncomeTaxCell = ({ players }) => {
+  const IncomeTaxCell = ({ players, position }) => {
     // Find the object in the JSON data that matches the provided name
     const property = spacesData.spaces.find(
-      (space) => space.type === 'income-tax'
+      (space) => space.position === position
     );
   
     return (
@@ -271,6 +276,7 @@ function generateRandomId() {
     specialCellName = "visiting-jail"
     location = "cell-left"
     additionalClasses = "cell-bottom"
+    position = {10}
     players = {players}
     />
     <PropertyCell
@@ -286,6 +292,7 @@ function generateRandomId() {
     location = "cell-bottom"
     additionalClasses = "cell"
     players = {players}
+    position = {7}
     />
     <PropertyCell
       name="Oriental Avenue"
@@ -297,6 +304,7 @@ function generateRandomId() {
     />
     <IncomeTaxCell
     players = {players}
+    position = {4}
      />
     <PropertyCell
       name="Baltic Avenue"
@@ -307,6 +315,7 @@ function generateRandomId() {
     location = "cell-bottom"
     additionalClasses = "cell"
     players = {players}
+    position = {2}
     />
     <PropertyCell
       name="Mediterranean Avenue"
@@ -317,6 +326,7 @@ function generateRandomId() {
     location = "cell-bottom"
     additionalClasses = "cell"
     players = {players}
+    position = {0}
     />
     <PropertyCell
       name="St. Charles Place"
@@ -353,6 +363,7 @@ function generateRandomId() {
     location = "cell-left"
     additionalClasses = "cell community-chest-left"
     players = {players}
+    position = {17}
     />
     <PropertyCell
       name="Tennessee Avenue"
@@ -369,6 +380,7 @@ function generateRandomId() {
     location = "cell-left"
     additionalClasses = "free-parking"
     players = {players}
+    position = {20}
     />
     <PropertyCell
       name="Kentucky Avenue"
@@ -379,6 +391,7 @@ function generateRandomId() {
     location = "cell-top"
     additionalClasses = "cell"
     players = {players}
+    position = {22}
     />
     <PropertyCell
       name="Indiana Avenue"
@@ -414,6 +427,7 @@ function generateRandomId() {
     location = "cell-top"
     additionalClasses = "go-to-jail"
     players = {players}
+    position = {30}
     />
     <PropertyCell
       name="Pacific Avenue"
@@ -428,6 +442,7 @@ function generateRandomId() {
     location = "cell-right"
     additionalClasses = "cell community-chest"
     players = {players}
+    position = {33}
     />
     <PropertyCell
       name="Pennsylvania Avenue"
@@ -442,6 +457,7 @@ function generateRandomId() {
     location = "cell-right"
     additionalClasses = "cell"
     players = {players}
+    position = {36}
     />
     <PropertyCell
       name="Park Place"
@@ -452,6 +468,7 @@ function generateRandomId() {
     location = "cell-right"
     additionalClasses = "luxury-tax"
     players = {players}
+    position = {38}
     />
     <PropertyCell
       name="Boardwalk"

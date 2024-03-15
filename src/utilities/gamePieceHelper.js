@@ -1,7 +1,7 @@
 import moneybagsIcon from '../images/moneybags_icon.jpeg';
-import carIcon from '../images/monopoly_car.jpg';
-import dogIcon from '../images/monopoly_dog.jpg';
-import shipIcon from '../images/monopoly_ship.jpg';
+import carIcon from '../images/monopoly_car.png';
+import dogIcon from '../images/monopoly_dog.png';
+import shipIcon from '../images/monopoly_ship.png';
 import thimbleIcon from '../images/monopoly_thimble.png';
 import shoeIcon from '../images/monopoly_shoe.jpeg';
 
