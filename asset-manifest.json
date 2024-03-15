@@ -1,21 +1,22 @@
 {
   "files": {
     "main.css": "/monopoly-project/static/css/main.efbb0f08.css",
-    "main.js": "/monopoly-project/static/js/main.98689829.js",
+    "main.js": "/monopoly-project/static/js/main.5085c9b1.js",
     "static/js/787.c0bc97db.chunk.js": "/monopoly-project/static/js/787.c0bc97db.chunk.js",
     "static/media/monopoly_thimble.png": "/monopoly-project/static/media/monopoly_thimble.46767f6a6578cbcdf3b9.png",
     "static/media/monopoly_logo.png": "/monopoly-project/static/media/monopoly_logo.d23d37c33ba62896657f.png",
+    "static/media/monopoly_dog.png": "/monopoly-project/static/media/monopoly_dog.af97bcb85ebcd1c08ae7.png",
+    "static/media/monopoly_ship.png": "/monopoly-project/static/media/monopoly_ship.fbfb534a5ca3ee5a49f4.png",
+    "static/media/monopoly_car.png": "/monopoly-project/static/media/monopoly_car.d43176bb3cc8fa035a83.png",
     "static/media/moneybags_icon.jpeg": "/monopoly-project/static/media/moneybags_icon.92173e51dec278dd09b7.jpeg",
-    "static/media/monopoly_ship.jpg": "/monopoly-project/static/media/monopoly_ship.012587fed35aaef5cb31.jpg",
-    "static/media/monopoly_dog.jpg": "/monopoly-project/static/media/monopoly_dog.78c8013391618543bebc.jpg",
     "static/media/monopoly_shoe.jpeg": "/monopoly-project/static/media/monopoly_shoe.e5257a33cc4cc989d6eb.jpeg",
     "index.html": "/monopoly-project/index.html",
     "main.efbb0f08.css.map": "/monopoly-project/static/css/main.efbb0f08.css.map",
-    "main.98689829.js.map": "/monopoly-project/static/js/main.98689829.js.map",
+    "main.5085c9b1.js.map": "/monopoly-project/static/js/main.5085c9b1.js.map",
     "787.c0bc97db.chunk.js.map": "/monopoly-project/static/js/787.c0bc97db.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.efbb0f08.css",
-    "static/js/main.98689829.js"
+    "static/js/main.5085c9b1.js"
   ]
 }
