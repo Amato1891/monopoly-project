@@ -399,21 +399,18 @@
 
 .property-details-card-rent-with-house-container {
   display: flex;
-  justify-content: space-between;
-  padding-left: 20%;
-  padding-right: 30%;
+  justify-content: space-evenly;
   font-weight: 400;
   font-family: 'BioRhyme', serif;
 }
 
 .property-details-card-mortgage-value-container {
   display: flex;
-  justify-content: space-between;
-  padding-left: 20%;
-  padding-right: 30%;
+  justify-content: space-evenly;
   font-weight: 400;
   font-size: 1.3em;
   font-family: 'BioRhyme', serif;
+  padding: 0% 2% 2%;
 }
 
 .property-details-card-mortgage-value {
@@ -423,20 +420,16 @@
 }
 
 .property-details-card-house-cost-container {
-  display: flex;
   text-align: center;
-  padding-left: 30%;
-  padding-right: 30%;
   font-weight: 500;
   font-family: 'BioRhyme', serif;
   font-size: 0.9em;
+  width: 100%;
 }
 
 .property-details-card-monopoly-fine-print {
-  display: flex;
+  width: 100%;
   text-align: center;
-  padding-left: 30%;
-  padding-right: 30%;
   font-weight: 400;
   font-family: 'BioRhyme', serif;
   font-size: 0.6em;

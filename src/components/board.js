@@ -11,6 +11,7 @@ import spacesData from '../data/spaces.json';
 import Sidebar from './Sidebar';
 import DiceRoller from './DiceRoller';
 import {gamePieceHelper} from '../utilities/gamePieceHelper';
+import {IncomeTax} from './IncomeTax';
 
 function Board() {
 
@@ -27,6 +28,8 @@ const [propertyModalShow, setPropertyModalShow] = React.useState(false);
 const [rolledValue, setRolledValue] = useState(null);
 const [resetDice, setResetDice] = useState(false);
 const [rolledDoubles, setRolledDoubles] = useState(false);
+const [incomeTaxCellActive, setIncomeTaxCellActive] = useState(false);
+const [incomeTaxPaid, setIncomeTaxPaid] = useState(false);
 
   // Function to handle the rolledDoubles value from DiceRoller
   const checkDoublesRoll = (value) => {
@@ -48,13 +51,14 @@ function generateRandomId() {
   const handleEndTurn = () => {
     setRolledValue(null);
     setResetDice(true);
+    setIncomeTaxPaid (false);
     // set new active player
     let indexOfCurrentPlayer = players.findIndex(player => player.playerId === activePlayer.playerId);
     let newActivePlayer = indexOfCurrentPlayer+1 === players.length ? 0 : indexOfCurrentPlayer+1;
     setActivePlayer(players[newActivePlayer]);
   };
 
-  const handleRoll = (value) => {
+  const handleDiceRoll = (value) => {
     setResetDice(false);
     setRolledValue(value);
     // calculate new position
@@ -73,6 +77,13 @@ function generateRandomId() {
     if (totalPlayers < 4) {
       setPlayerDetailsModalShow(true);
     }
+  };
+  
+  // hide the income tax modal
+  const handleIncomeTaxModalHide = (playerCashAfterTax) => {
+    activePlayer.cash = playerCashAfterTax;
+    setActivePlayer(activePlayer);
+    setIncomeTaxPaid (true);
   };
 
   // hide the property details modal
@@ -113,6 +124,7 @@ function generateRandomId() {
     setActivePlayer(players[0]);
   };
 
+  // render the property space and the gamepiece if player is currently on that property
   const PropertyCell = ({ name, additionalClasses, players }) => {
     // Find the object in the JSON data that matches the provided name
     const property = spacesData.spaces.find(
@@ -138,7 +150,6 @@ function generateRandomId() {
           {players &&
             players.map((player, index) => {
               if (player.position === position) {
-                // {console.log(`${player.name}'s CURRENT POSITION ${player.position}. PROPERTY NAME ${name}`)}
                 return (
                   <div key={index} style={{ display: 'inline-block', margin: '5px' }}>
                     <img
@@ -151,8 +162,6 @@ function generateRandomId() {
                   </div>
                 );
               }
-              // console.log(`PROPERTY: ${JSON.stringify(property)}`)
-              // console.log(`THE ${player.gamePiece} is at position ${player.position} and the prop position is ${position}`)
               return null;
             })}
         </div>
@@ -161,13 +170,12 @@ function generateRandomId() {
       return null;
     }
   };
-  
+   // render the special spaces and the gamepiece if player is currently on that space
   const SpecialCell = ({ specialCellName, location, additionalClasses, players, position }) => {
     // Find the object in the JSON data that matches the provided name
     const property = spacesData.spaces.find(
       (space) =>
         (space.position === position ));
-console.log(property)
     return (
       <div className={`${specialCellName} ${location} ${additionalClasses || ''}`}>
         {/* Render game piece icon only if player is on this cell */}
@@ -191,7 +199,7 @@ console.log(property)
       </div>
     );
   };
-  
+   // render the income tax space and the gamepiece if player is currently on that space
   const IncomeTaxCell = ({ players, position }) => {
     // Find the object in the JSON data that matches the provided name
     const property = spacesData.spaces.find(
@@ -210,6 +218,8 @@ console.log(property)
         {/* Render game piece icons */}
         {players.map((player, index) => {
           if (property && player.position === property.position) {
+            // if player hasnt yet paid income tax after landing on the space, then continue rendering the modal to pay tax.
+            !incomeTaxPaid && !!rolledValue && activePlayer.position === player.position ? setIncomeTaxCellActive (true) : setIncomeTaxCellActive (false);
             return (
               <div key={index} style={{ display: 'inline-block', margin: '5px' }}>
                 <img
@@ -227,8 +237,7 @@ console.log(property)
       </div>
     );
   };
-  
-  
+
 
   return (
    <div><DisplayModal
@@ -245,6 +254,11 @@ console.log(property)
     activeproperty={activeProp}
     onHide={handlePropDetailsModalHide}
     />
+    <IncomeTax
+    show={incomeTaxCellActive}
+    onHide={handleIncomeTaxModalHide}
+    activePlayer={activePlayer}
+    />
     {/* SIDBAR */}
 <div className="app">
       <Sidebar activePlayer={activePlayer} rolledValue={rolledValue} handleEndTurn={handleEndTurn} rolledDoubles={rolledDoubles} />
@@ -254,7 +268,7 @@ console.log(property)
 </div>
     <div className="board">
     <div className="dice-container">
-    <DiceRoller onRoll={handleRoll} checkDoubles={checkDoublesRoll} resetDice={resetDice}></DiceRoller>
+    <DiceRoller onRoll={handleDiceRoll} checkDoubles={checkDoublesRoll} resetDice={resetDice}></DiceRoller>
     </div>
       <div className="center-logo">
         <div className ="center-logo-image">
