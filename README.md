@@ -21,6 +21,8 @@ This Game Board Project is **purely for Educational and Non-commercial** Use.
 - [🚀 Future Improvements](#future-improvements)
 - [Note on Playability](#note-on-playability)
 
+---
+
 ## 📚 About
 
 Welcome to my **Monopoly Remake** project! This is my re-creation of the classic **Monopoly** board game, developed using **React** and styled with **Bootstrap**. The project offers a dynamic and interactive game board experience.
@@ -100,13 +102,15 @@ For any inquiries or feedback, feel free to reach out to me directly through Git
 ## 🚀 Future Improvements
 The following improvements are planned for the future development of the game:
 
-Complete Gameplay Mechanics: I will implement all core gameplay features, including the ability to:
-Buy properties
-Mortgage properties
-Trade properties with other players
-Implement the chance and community chest cards
-Handle bankruptcies and other in-game events
-AI Implementation: Once the game mechanics are complete, I plan to implement an AI system that will allow players to play against CPU-controlled opponents. The AI will be designed to mimic human-like decisions and strategies during the game.
+- **Complete Gameplay Mechanics**: I will implement all core gameplay features, including the ability to:
+  - Buy properties
+  - Mortgage properties
+  - Trade properties with other players
+  - Implement the chance and community chest cards
+  - Handle bankruptcies and other in-game events
+
+- **AI Implementation**: Once the game mechanics are complete, I plan to implement an AI system that will allow players to play against CPU-controlled opponents. The AI will be designed to mimic human-like decisions and strategies during the game.
+
 Stay tuned for these updates and more as development continues!
 
 ---
