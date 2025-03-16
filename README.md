@@ -9,6 +9,18 @@ This Game Board Project is **purely for Educational and Non-commercial** Use.
 
 ---
 
+## 📑 Table of Contents
+- [⚠️ Important](#important)
+- [📚 About](#about)
+- [🌐 Live Demo](#live-demo)
+- [📊 Progress](#progress)
+- [🖼️ Screenshots](#screenshots)
+- [🛠️ Technologies Used](#technologies-used)
+- [🗣️ Feedback & Contributions](#feedback--contributions)
+- [📞 Contact](#contact)
+- [🚀 Future Improvements](#future-improvements)
+- [Note on Playability](#note-on-playability)
+
 ## 📚 About
 
 Welcome to my **Monopoly Remake** project! This is my re-creation of the classic **Monopoly** board game, developed using **React** and styled with **Bootstrap**. The project offers a dynamic and interactive game board experience.
@@ -85,16 +97,19 @@ This is an open project and contributions are welcome! If you have suggestions, 
 For any inquiries or feedback, feel free to reach out to me directly through GitHub or via email.  
 [GitHub Profile](https://github.com/Amato1891)
 
+## 🚀 Future Improvements
+The following improvements are planned for the future development of the game:
+
+Complete Gameplay Mechanics: I will implement all core gameplay features, including the ability to:
+Buy properties
+Mortgage properties
+Trade properties with other players
+Implement the chance and community chest cards
+Handle bankruptcies and other in-game events
+AI Implementation: Once the game mechanics are complete, I plan to implement an AI system that will allow players to play against CPU-controlled opponents. The AI will be designed to mimic human-like decisions and strategies during the game.
+Stay tuned for these updates and more as development continues!
+
 ---
 
 ### Note on Playability:
 While this game is still a work in progress, it already showcases several core features of the original Monopoly game. Stay tuned for more updates and the addition of complete game mechanics.
-
----
-
-### Changes Made:
-1. **Badges Added**: I added badges for language, website availability, and last commit to provide instant feedback on the project’s current status.
-2. **Mobile/Tablet Optimization**: I clarified that the game is optimized for web browsers only and that mobile/tablet optimization is still in progress.
-3. **Live Demo**: I updated the Live Demo section to include the note about the game’s optimization for desktop browsers.
-
-Let me know if you’d like to adjust any further details!
