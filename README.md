@@ -1,33 +1,100 @@
-# Important ❗
-This Game Board Project is purely for <strong>Educational and Non-commercial</strong> Use
+# Monopoly Board Game - Remake 🎲
 
-# board-game-project
-my re-creation of the popular board game.
-<br/>
-![Screenshot 2023-11-14 105402](https://github.com/Amato1891/monopoly-project/assets/84348911/f91f2f03-b321-440d-ad4f-a542a0113859)
+[![Language](https://img.shields.io/github/languages/top/Amato1891/monopoly-project)](https://github.com/Amato1891/monopoly-project)
+[![Website](https://img.shields.io/website?url=https%3A%2F%2Fjimamato.com%2Fmonopoly-project%2F)](https://jimamato.com/monopoly-project/)
+[![Last Commit](https://img.shields.io/github/last-commit/Amato1891/monopoly-project)](https://github.com/Amato1891/monopoly-project/commits/main)
 
-# Live Demo
-<a href="http://jimamato.com/monopoly-project/" target="_blank">Board Game Project</a>
+## ⚠️ Important 
+This Game Board Project is **purely for Educational and Non-commercial** Use.
 
+---
 
-# About
-Currently in development using React and styled with Bootstrap, this project aims to deliver a dynamic and interactive game board experience. Please note that it's a work in progress, and while not fully playable yet, you can explore the current features and development progress below.
+## 📚 About
 
-# Progress
-Track the project on <a href="https://jim-amato-monopoly.atlassian.net/jira/software/projects/UI/boards/1" target="_blank">Jira</a>
-![image](https://github.com/Amato1891/monopoly-project/assets/84348911/4fc1517a-411f-4642-9069-35bd31aa77ae)
+Welcome to my **Monopoly Remake** project! This is my re-creation of the classic **Monopoly** board game, developed using **React** and styled with **Bootstrap**. The project offers a dynamic and interactive game board experience.
 
+🔧 **Current Status**:  
+This project is still under development and is not fully playable yet. While it’s not fully optimized for mobile or tablet devices, the game is fully functional on desktop/web browsers. You can explore the ongoing work in progress below.
 
-# Images
-#### Side Panel
-![Screenshot 2023-11-14 110432](https://github.com/Amato1891/monopoly-project/assets/84348911/8f0e8923-85a1-4460-a735-950676b730d4)
-#### Utilities
-![Screenshot 2023-11-14 110015](https://github.com/Amato1891/monopoly-project/assets/84348911/d61dba86-cac3-48e7-9a1a-a59883021595)
-#### Properties
-![Screenshot 2023-11-14 110005](https://github.com/Amato1891/monopoly-project/assets/84348911/b28a4b85-545d-4483-b6a0-d20e43f50f85)
-#### Rail Roads
-![Screenshot 2023-11-14 105955](https://github.com/Amato1891/monopoly-project/assets/84348911/5b26061e-0753-45ef-99d1-5424034141e6)
-#### Rolling Doubles Twice
-![Screenshot 2023-11-14 121011](https://github.com/Amato1891/monopoly-project/assets/84348911/4a9a023f-a526-41d3-874e-6ab645cd5fa6)
-#### Rolling Doubles
-![Screenshot 2023-11-14 120808](https://github.com/Amato1891/monopoly-project/assets/84348911/64f08acb-d4e8-4960-b792-f5f99a43d7ce)
+---
+
+## 🌐 Live Demo
+
+You can check out the live version of the game board here:  
+[Monopoly Game Project](https://jimamato.com/monopoly-project/)
+
+**Note**: The game is optimized for web browsers only. Mobile and tablet optimization is not yet implemented.
+
+---
+
+## 📊 Progress
+
+I am actively tracking the development and progress of this project on **Jira**. If you'd like to follow the roadmap and get more details about upcoming features and tasks, visit the board:  
+[Project Progress on Jira](https://jim-amato-monopoly.atlassian.net/jira/software/projects/UI/boards/1)
+
+![Jira Progress](https://github.com/Amato1891/monopoly-project/assets/84348911/4fc1517a-411f-4642-9069-35bd31aa77ae)
+
+---
+
+## 🖼️ Screenshots
+
+Here's a preview of some of the current features in development:
+
+### 🎮 Side Panel
+A preview of the game's side panel, where users can view their properties and game stats.  
+![Side Panel](https://github.com/Amato1891/monopoly-project/assets/84348911/8f0e8923-85a1-4460-a735-950676b730d4)
+
+### 🏙️ Utilities
+The utilities section showing some of the game’s key property elements.  
+![Utilities](https://github.com/Amato1891/monopoly-project/assets/84348911/d61dba86-cac3-48e7-9a1a-a59883021595)
+
+### 🏠 Properties
+A snapshot of how properties are displayed in the game.  
+![Properties](https://github.com/Amato1891/monopoly-project/assets/84348911/b28a4b85-545d-4483-b6a0-d20e43f50f85)
+
+### 🚂 Railroads
+Railroad properties are shown with distinct icons and styles.  
+![Rail Roads](https://github.com/Amato1891/monopoly-project/assets/84348911/5b26061e-0753-45ef-99d1-5424034141e6)
+
+### 🎲 Rolling Doubles (Twice)
+A feature showing the rolling of doubles twice, adding an exciting element to the game.  
+![Rolling Doubles Twice](https://github.com/Amato1891/monopoly-project/assets/84348911/4a9a023f-a526-41d3-874e-6ab645cd5fa6)
+
+### 🎲 Rolling Doubles
+Here’s an example of the rolling of doubles in the game mechanics.  
+![Rolling Doubles](https://github.com/Amato1891/monopoly-project/assets/84348911/64f08acb-d4e8-4960-b792-f5f99a43d7ce)
+
+---
+
+## 🛠️ Technologies Used
+
+- **Frontend**: React.js, Bootstrap (for responsive design)
+- **Backend**: Currently no backend; the game logic is implemented entirely in React.
+- **Deployment**: Hosted on a personal server for live access.
+
+---
+
+## 🗣️ Feedback & Contributions
+
+This is an open project and contributions are welcome! If you have suggestions, improvements, or bug fixes, feel free to fork the repo or open an issue.
+
+---
+
+## 📞 Contact
+
+For any inquiries or feedback, feel free to reach out to me directly through GitHub or via email.  
+[GitHub Profile](https://github.com/Amato1891)
+
+---
+
+### Note on Playability:
+While this game is still a work in progress, it already showcases several core features of the original Monopoly game. Stay tuned for more updates and the addition of complete game mechanics.
+
+---
+
+### Changes Made:
+1. **Badges Added**: I added badges for language, website availability, and last commit to provide instant feedback on the project’s current status.
+2. **Mobile/Tablet Optimization**: I clarified that the game is optimized for web browsers only and that mobile/tablet optimization is still in progress.
+3. **Live Demo**: I updated the Live Demo section to include the note about the game’s optimization for desktop browsers.
+
+Let me know if you’d like to adjust any further details!
