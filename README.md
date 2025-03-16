@@ -12,13 +12,13 @@ This Game Board Project is **purely for Educational and Non-commercial** Use.
 ## 📑 Table of Contents
 - [⚠️ Important](#-important)
 - [📚 About](#-about)
-- [🌐 Live Demo](#live-demo)
-- [📊 Progress](#progress)
-- [🖼️ Screenshots](#screenshots)
-- [🛠️ Technologies Used](#technologies-used)
-- [🗣️ Feedback & Contributions](#feedback--contributions)
-- [📞 Contact](#contact)
-- [🚀 Future Improvements](#future-improvements)
+- [🌐 Live Demo](#-live-demo)
+- [📊 Progress](#-progress)
+- [🖼️ Screenshots](#-screenshots)
+- [🛠️ Technologies Used](#-technologies-used)
+- [🗣️ Feedback & Contributions](#-feedback--contributions)
+- [📞 Contact](#-contact)
+- [🚀 Future Improvements](#-future-improvements)
 - [Note on Playability](#note-on-playability)
 
 ---
