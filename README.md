@@ -23,7 +23,7 @@ This Game Board Project is **purely for Educational and Non-commercial** Use.
 
 ---
 
-## 📚 About
+## 📚About
 
 Welcome to my **Monopoly Remake** project! This is my re-creation of the classic **Monopoly** board game, developed using **React** and styled with **Bootstrap**. The project offers a dynamic and interactive game board experience.
 
