@@ -56,13 +56,13 @@ A snapshot of how properties are displayed in the game.
 Railroad properties are shown with distinct icons and styles.  
 ![Rail Roads](https://github.com/Amato1891/monopoly-project/assets/84348911/5b26061e-0753-45ef-99d1-5424034141e6)
 
-### 🎲 Rolling Doubles (Twice)
-A feature showing the rolling of doubles twice, adding an exciting element to the game.  
-![Rolling Doubles Twice](https://github.com/Amato1891/monopoly-project/assets/84348911/4a9a023f-a526-41d3-874e-6ab645cd5fa6)
-
 ### 🎲 Rolling Doubles
 Here’s an example of the rolling of doubles in the game mechanics.  
 ![Rolling Doubles](https://github.com/Amato1891/monopoly-project/assets/84348911/64f08acb-d4e8-4960-b792-f5f99a43d7ce)
+
+### 🎲 Rolling Doubles (Twice)
+A feature showing the rolling of doubles twice, adding an exciting element to the game.  
+![Rolling Doubles Twice](https://github.com/Amato1891/monopoly-project/assets/84348911/4a9a023f-a526-41d3-874e-6ab645cd5fa6)
 
 ---
 
