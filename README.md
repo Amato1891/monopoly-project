@@ -15,10 +15,10 @@ This Game Board Project is **purely for Educational and Non-commercial** Use.
 - [🌐 Live Demo](#-live-demo)
 - [📊 Progress](#-progress)
 - [🖼️ Screenshots](#-screenshots)
-- [🛠️ Technologies Used](#-technologies-used)
+- [🛠️ Technologies Used](#-technologies--used)
 - [🗣️ Feedback & Contributions](#-feedback--contributions)
 - [📞 Contact](#-contact)
-- [🚀 Future Improvements](#-future-improvements)
+- [🚀 Future Improvements](#-future--improvements)
 - [Note on Playability](#note-on-playability)
 
 ---
