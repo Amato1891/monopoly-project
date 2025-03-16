@@ -11,7 +11,7 @@ This Game Board Project is **purely for Educational and Non-commercial** Use.
 
 ## 📑 Table of Contents
 - [⚠️ Important](#important)
-- [📚 About](#about)
+- [📚 About](#About)
 - [🌐 Live Demo](#live-demo)
 - [📊 Progress](#progress)
 - [🖼️ Screenshots](#screenshots)
